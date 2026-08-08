@@ -1,9 +1,10 @@
+<!-- Based on the provided template[cite: 1] -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Engagement Onboarding &amp; Payment Portal</title>
+<title>Engagement Onboarding &amp; Payment</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -182,11 +183,11 @@
   .amount-callout .label{ font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(247,243,233,0.75); }
   .amount-callout .value{ font-family:'Cormorant Garamond', serif; font-weight: 700; font-size: 32px; color: var(--parchment); }
 
-  .payment-box{ background: rgba(26,39,68,0.04); border: 1.5px solid var(--line); border-radius:6px; padding: 22px 24px; font-size: 14.5px; line-height: 2.1; margin-bottom: 20px; }
-  .payment-box dl{ margin:0; display:grid; grid-template-columns: max-content 1fr; gap: 4px 18px; }
-  .payment-box dt{ color: var(--ink-soft); font-weight: 600; }
-  .payment-box dd{ margin:0; color: var(--navy); font-weight: 600; }
-  .payment-box .mono{ font-family:'JetBrains Mono', monospace; letter-spacing: 0.02em; }
+  .bank-details{ background: rgba(26,39,68,0.04); border: 1.5px solid var(--line); border-radius:6px; padding: 22px 24px; font-size: 14.5px; line-height: 2.1; }
+  .bank-details dl{ margin:0; display:grid; grid-template-columns: max-content 1fr; gap: 4px 18px; }
+  .bank-details dt{ color: var(--ink-soft); font-weight: 600; }
+  .bank-details dd{ margin:0; color: var(--navy); font-weight: 600; }
+  .bank-details .mono{ font-family:'JetBrains Mono', monospace; letter-spacing: 0.02em; }
 
   .secure-note{ display:flex; align-items:flex-start; gap:8px; font-size: 12.5px; color: var(--ink-soft); margin-top: 16px; line-height: 1.6; }
   .secure-note svg{ flex-shrink:0; margin-top: 2px; }
@@ -227,8 +228,8 @@
     .form-footer{ flex-direction: column; align-items: stretch; }
     button.submit{ width: 100%; }
     .amount-callout{ flex-direction: column; align-items: flex-start; }
-    .payment-box dl{ grid-template-columns: 1fr; gap: 2px 0; }
-    .payment-box dd{ margin-bottom: 8px; }
+    .bank-details dl{ grid-template-columns: 1fr; gap: 2px 0; }
+    .bank-details dd{ margin-bottom: 8px; }
   }
 
   @media print{
@@ -246,7 +247,7 @@
 
   <!-- ===================== PAGE 1 — APPLICATION ===================== -->
   <section class="page active" id="page-application">
-    <form id="marriageForm" novalidate aria-labelledby="app-heading">
+    <form id="engagementForm" novalidate aria-labelledby="app-heading">
       <header>
         <nav class="progress" aria-label="Application progress">
           <span class="current" aria-current="step">1. Onboarding</span><span class="sep">›</span>
@@ -255,46 +256,46 @@
         </nav>
         <div class="header-top">
           <div>
-            <p class="registry-name">Engagement Services &nbsp;·&nbsp; Onboarding Portal</p>
-            <h1 id="app-heading">Engagement Onboarding &amp; Registration</h1>
-            <p class="subtitle">Complete this form with information for both partners to finalize your engagement planning and onboarding details.</p>
+            <p class="registry-name">Engagement Registry &nbsp;·&nbsp; Onboarding Division</p>
+            <h1 id="app-heading">Engagement Onboarding</h1>
+            <p class="subtitle">Complete this onboarding form with information for both partners to begin the engagement process.</p>
           </div>
-          <div class="seal" aria-hidden="true"><span>E.O</span></div>
+          <div class="seal" aria-hidden="true"><span>ENG</span></div>
         </div>
         <div class="meta-row">
           <div class="meta-item">Form Reference<b>ENG-INTAKE-01</b></div>
           <div class="meta-item">Date Issued<b id="dateIssued">—</b></div>
-          <div class="meta-item">Ref No. (Internal Use)<b>__________</b></div>
+          <div class="meta-item">File No. (Office Use)<b>__________</b></div>
         </div>
       </header>
 
       <div class="body" id="main-content">
-        <p class="intro">Fields marked <span style="color:#6B2737;">*</span> are required. Enter legal names as they appear on official identification.</p>
+        <p class="intro">Fields marked <span style="color:#6B2737;">*</span> are required. Enter names exactly as they appear on a government-issued photo ID. Incomplete applications cannot be processed.</p>
 
         <!-- PART I -->
         <section class="part">
           <div class="part-head">
             <span class="part-num">Part&nbsp;I</span>
-            <h2 class="part-title">Partner Information<small>Legal names and background details</small></h2>
+            <h2 class="part-title">Partner Information<small>Legal names and background of both partners</small></h2>
           </div>
           <div class="party-split">
             <div class="party-col">
-              <span class="party-label">Partner One (Suyin)</span>
+              <span class="party-label">Partner One</span>
               <div class="grid">
                 <div class="field span-2"><label for="p1_name">Full legal name<span class="req">*</span></label><input type="text" id="p1_name" name="p1_name" placeholder="First, Middle, Last" value="Suyin Le" required></div>
-                <div class="field"><label for="p1_dob">Date of birth<span class="req">*</span></label><input type="date" id="p1_dob" name="p1_dob" required></div>
-                <div class="field"><label for="p1_pob">State/country of birth<span class="req">*</span></label><input type="text" id="p1_pob" name="p1_pob"></div>
+                <div class="field"><label for="p1_dob">Date of birth<span class="req">*</span></label><input type="date" id="p1_dob" name="p1_dob" value="1998-06-14" required></div>
+                <div class="field"><label for="p1_pob">State/country of birth<span class="req">*</span></label><input type="text" id="p1_pob" name="p1_pob" value="San Francisco CA, USA"></div>
                 <div class="field"><label for="p1_ssn">Social Security number<span class="hint">Last 4 digits accepted</span></label><input type="text" id="p1_ssn" name="p1_ssn" placeholder="XXX-XX-XXXX" value="321-11-5640" inputmode="numeric"></div>
-                <div class="field"><label for="p1_occupation">Occupation</label><input type="text" id="p1_occupation" name="p1_occupation" value="Working class"></div>
-                <div class="field span-2"><label for="p1_status">Current status<span class="req">*</span></label>
+                <div class="field"><label for="p1_occupation">Occupation</label><input type="text" id="p1_occupation" name="p1_occupation" value="investment advisor"></div>
+                <div class="field span-2"><label for="p1_status">Marital status<span class="req">*</span></label>
                   <select id="p1_status" name="p1_status" required>
                     <option value="">Select status</option>
-                    <option selected>Single</option>
+                    <option selected>Never married</option>
                     <option>Widowed</option>
                     <option>Divorced</option>
                   </select>
                 </div>
-                <div class="field span-2"><label for="p1_address">Current residential address<span class="req">*</span></label><textarea id="p1_address" name="p1_address">Los Angeles, California</textarea></div>
+                <div class="field span-2"><label for="p1_address">Current residential address<span class="req">*</span></label><textarea id="p1_address" name="p1_address">Los Angeles CA</textarea></div>
                 <div class="field"><label for="p1_idtype">Photo ID type<span class="req">*</span></label>
                   <select id="p1_idtype" name="p1_idtype" required>
                     <option value="">Select ID type</option>
@@ -306,7 +307,7 @@
                 </div>
                 <div class="field"><label for="p1_idnum">ID number<span class="req">*</span></label><input type="text" id="p1_idnum" name="p1_idnum" value="CA10473829"></div>
                 <div class="field"><label for="p1_phone">Phone number<span class="req">*</span></label><input type="tel" id="p1_phone" name="p1_phone" value="937-270-4211"></div>
-                <div class="field"><label for="p1_email">Email address</label><input type="email" id="p1_email" name="p1_email"></div>
+                <div class="field"><label for="p1_email">Email address</label><input type="email" id="p1_email" name="p1_email" value="hstuff9100@gmail.com"></div>
               </div>
             </div>
             <div class="party-col">
@@ -317,10 +318,10 @@
                 <div class="field"><label for="p2_pob">State/country of birth<span class="req">*</span></label><input type="text" id="p2_pob" name="p2_pob"></div>
                 <div class="field"><label for="p2_ssn">Social Security number<span class="hint">Last 4 digits accepted</span></label><input type="text" id="p2_ssn" name="p2_ssn" placeholder="XXX-XX-XXXX" inputmode="numeric"></div>
                 <div class="field"><label for="p2_occupation">Occupation</label><input type="text" id="p2_occupation" name="p2_occupation"></div>
-                <div class="field span-2"><label for="p2_status">Current status<span class="req">*</span></label>
+                <div class="field span-2"><label for="p2_status">Marital status<span class="req">*</span></label>
                   <select id="p2_status" name="p2_status" required>
                     <option value="">Select status</option>
-                    <option>Single</option>
+                    <option>Never married</option>
                     <option>Widowed</option>
                     <option>Divorced</option>
                   </select>
@@ -347,20 +348,20 @@
         <section class="part">
           <div class="part-head">
             <span class="part-num">Part&nbsp;II</span>
-            <h2 class="part-title">Ceremony Details<small>Immediately after engagement has been finalized</small></h2>
+            <h2 class="part-title">Engagement Celebration Details<small>Type, date, and location of the planned event</small></h2>
           </div>
           <fieldset style="margin-bottom:20px;">
-            <legend>Type of ceremony<span class="req">*</span></legend>
+            <legend>Type of event<span class="req">*</span></legend>
             <div class="radio-row">
-              <label class="radio-opt"><input type="radio" name="marriage_type" value="civil" required> Civil ceremony</label>
-              <label class="radio-opt"><input type="radio" name="marriage_type" value="religious"> Religious ceremony</label>
-              <label class="radio-opt"><input type="radio" name="marriage_type" value="other"> Engagement Celebration / Other</label>
+              <label class="radio-opt"><input type="radio" name="engagement_type" value="formal" required> Formal celebration</label>
+              <label class="radio-opt"><input type="radio" name="engagement_type" value="casual"> Casual gathering</label>
+              <label class="radio-opt"><input type="radio" name="engagement_type" value="other"> Other</label>
             </div>
           </fieldset>
           <div class="grid cols-3">
-            <div class="field"><label for="marriage_date">Proposed ceremony date<span class="req">*</span></label><input type="date" id="marriage_date" name="marriage_date" required></div>
-            <div class="field span-2"><label for="marriage_venue">Ceremony location<span class="req">*</span></label><input type="text" id="marriage_venue" name="marriage_venue" placeholder="Full address of venue"></div>
-            <div class="field span-3"><label for="officiant">Officiant / Host name<span class="hint">Leave blank if not yet confirmed</span></label><input type="text" id="officiant" name="officiant"></div>
+            <div class="field span-2"><label for="engagement_date">Celebration date<span class="req">*</span></label><input type="text" id="engagement_date" name="engagement_date" value="immediately after engagement has been finallized" required></div>
+            <div class="field"><label for="engagement_venue">Event location<span class="req">*</span></label><input type="text" id="engagement_venue" name="engagement_venue" placeholder="Full address of venue"></div>
+            <div class="field span-3"><label for="coordinator">Event Coordinator<span class="hint">Leave blank if not yet confirmed</span></label><input type="text" id="coordinator" name="coordinator"></div>
           </div>
         </section>
 
@@ -368,19 +369,19 @@
         <section class="part">
           <div class="part-head">
             <span class="part-num">Part&nbsp;III</span>
-            <h2 class="part-title">Witnesses / Key Guests<small>Designated witnesses or key individuals present for the onboarding</small></h2>
+            <h2 class="part-title">Witnesses<small>Required verification for the engagement onboarding</small></h2>
           </div>
           <div class="witness-block">
             <span class="witness-num">Witness One</span>
             <div class="grid">
-              <div class="field"><label for="w1_name">Full name<span class="req">*</span></label><input type="text" id="w1_name" name="w1_name" required></div>
-              <div class="field"><label for="w1_relation">Relationship to couple</label><input type="text" id="w1_relation" name="w1_relation"></div>
+              <div class="field"><label for="w1_name">Full name<span class="req">*</span></label><input type="text" id="w1_name" name="w1_name" value="Nancy Le" required></div>
+              <div class="field"><label for="w1_relation">Relationship to couple</label><input type="text" id="w1_relation" name="w1_relation" value="sister"></div>
               <div class="field"><label for="w1_phone">Phone number<span class="req">*</span></label><input type="tel" id="w1_phone" name="w1_phone" required></div>
-              <div class="field"><label for="w1_address">Address</label><input type="text" id="w1_address" name="w1_address"></div>
+              <div class="field"><label for="w1_address">Address</label><input type="text" id="w1_address" name="w1_address" value="Los Angeles CA (Lives together)"></div>
             </div>
           </div>
           <div class="witness-block">
-            <span class="witness-num">Witness Two <span class="hint" style="font-weight:400;">(Optional)</span></span>
+            <span class="witness-num">Witness Two <span class="hint" style="font-weight:400;">(optional)</span></span>
             <div class="grid">
               <div class="field"><label for="w2_name">Full name</label><input type="text" id="w2_name" name="w2_name"></div>
               <div class="field"><label for="w2_relation">Relationship to couple</label><input type="text" id="w2_relation" name="w2_relation"></div>
@@ -394,15 +395,17 @@
         <section class="part">
           <div class="part-head">
             <span class="part-num">Part&nbsp;IV</span>
-            <h2 class="part-title">Required Identification &amp; Documents<small>Standard onboarding documentation — check each item ready to submit</small></h2>
+            <h2 class="part-title">Required Documents<small>Standard engagement onboarding documentation — check each item you will bring</small></h2>
           </div>
           <div class="doc-checklist">
-            <label class="doc-item"><input type="checkbox" name="doc_id1"><span>Valid photo ID<small>Driver's license, state ID, or passport — Partner One</small></span></label>
-            <label class="doc-item"><input type="checkbox" name="doc_id2"><span>Valid photo ID<small>Partner Two</small></span></label>
-            <label class="doc-item"><input type="checkbox" name="doc_ssn"><span>Social Security number verification<small>For identity confirmation</small></span></label>
-            <label class="doc-item"><input type="checkbox" name="doc_birth"><span>Birth Certificate / ID copy<small>Required for verification</small></span></label>
-            <label class="doc-item"><input type="checkbox" name="doc_divorce"><span>Proof of Single Status / Legal Decrees<small>If applicable</small></span></label>
-            <label class="doc-item"><input type="checkbox" name="doc_nameChange"><span>Proof of legal name change<small>If applicable</small></span></label>
+            <label class="doc-item"><input type="checkbox" name="doc_id1" checked><span>Valid government-issued photo ID<small>Driver's license, state ID, passport, or military ID — Partner One</small></span></label>
+            <label class="doc-item"><input type="checkbox" name="doc_id2"><span>Valid government-issued photo ID<small>Partner Two</small></span></label>
+            <label class="doc-item"><input type="checkbox" name="doc_ssn" checked><span>Social Security number<small>Card not required in most states, but the number is</small></span></label>
+            <label class="doc-item"><input type="checkbox" name="doc_birth"><span>Certified birth certificate<small>Required if ID does not clearly show date of birth</small></span></label>
+            <label class="doc-item"><input type="checkbox" name="doc_divorce"><span>Certified divorce decree<small>Required if previously married and divorced</small></span></label>
+            <label class="doc-item"><input type="checkbox" name="doc_death"><span>Certified death certificate of prior spouse<small>Required if widowed</small></span></label>
+            <label class="doc-item"><input type="checkbox" name="doc_nameChange"><span>Proof of legal name change<small>Court order, if applicable</small></span></label>
+            <label class="doc-item"><input type="checkbox" name="doc_consent"><span>Parental or guardian consent<small>Required if either partner is under 18</small></span></label>
           </div>
         </section>
 
@@ -412,7 +415,7 @@
             <span class="part-num">Part&nbsp;V</span>
             <h2 class="part-title">Declaration<small>To be read and signed by both partners</small></h2>
           </div>
-          <p class="declaration">We, the undersigned, declare under penalty of perjury that the information provided in this engagement onboarding application is true and correct to the best of our knowledge. We understand that this onboarding registers our agreement and details prior to ceremony finalization.</p>
+          <p class="declaration">We, the undersigned, declare that the information provided in this engagement onboarding application is true and correct to the best of our knowledge. We understand that this process formally registers our engagement intention and event details.</p>
           <div class="sign-grid">
             <div><div class="sign-line"></div><span class="sign-cap">Signature — Partner One &nbsp;&nbsp;|&nbsp;&nbsp; Date</span></div>
             <div><div class="sign-line"></div><span class="sign-cap">Signature — Partner Two &nbsp;&nbsp;|&nbsp;&nbsp; Date</span></div>
@@ -422,11 +425,11 @@
         <!-- OFFICIAL USE -->
         <section class="part">
           <div class="official-box">
-            <h2 class="part-title">For Administrative Use Only</h2>
+            <h2 class="part-title">For Office Use Only</h2>
             <div class="official-grid">
               <div class="field"><label for="off_file">File number</label><input type="text" id="off_file" name="off_file"></div>
               <div class="field"><label for="off_date">Date received</label><input type="date" id="off_date" name="off_date"></div>
-              <div class="field"><label for="off_clerk">Received by</label><input type="text" id="off_clerk" name="off_clerk"></div>
+              <div class="field"><label for="off_clerk">Received by (Coordinator)</label><input type="text" id="off_clerk" name="off_clerk"></div>
               <div class="field"><label for="off_verified">Documents verified</label>
                 <select id="off_verified" name="off_verified"><option value="">Select</option><option>Complete</option><option>Incomplete — see notes</option></select>
               </div>
@@ -440,7 +443,7 @@
           <button type="submit" class="submit">Continue to Payment &rarr;</button>
         </div>
       </div>
-      <div class="foot-strip">Engagement Services — Onboarding Division</div>
+      <div class="foot-strip">Engagement Registry — Onboarding Division</div>
     </form>
   </section>
 
@@ -453,9 +456,9 @@
           <span class="current" aria-current="step">2. Billing &amp; Payment</span><span class="sep">›</span>
           <span>3. Confirmation</span>
         </nav>
-        <p class="registry-name">Engagement Services &nbsp;·&nbsp; Onboarding Portal</p>
+        <p class="registry-name">Engagement Registry &nbsp;·&nbsp; Onboarding Division</p>
         <h1 id="bill-heading">Billing &amp; Payment</h1>
-        <p class="subtitle">Review your onboarding fees below and complete payment via Bank Transfer or Venmo to complete registration.</p>
+        <p class="subtitle">Review your fees below and complete payment by Venmo or bank transfer to finish your onboarding.</p>
         <div class="meta-row">
           <div class="meta-item">Application Reference<b id="refOut">—</b></div>
           <div class="meta-item">Date<b id="dateOut">—</b></div>
@@ -468,7 +471,7 @@
           <div class="applicant-summary">
             <div>Partner One<b id="p1Out">—</b></div>
             <div>Partner Two<b id="p2Out">—</b></div>
-            <div>Ceremony Type<b id="typeOut">—</b></div>
+            <div>Event Type<b id="typeOut">—</b></div>
           </div>
         </section>
 
@@ -476,42 +479,42 @@
         <section class="part">
           <div class="part-head">
             <span class="part-num">Part&nbsp;VI</span>
-            <h2 class="part-title">Fee Breakdown<small>Itemized breakdown of engagement onboarding and ceremony setup fees</small></h2>
+            <h2 class="part-title">Fee Breakdown<small>Here's exactly what makes up your total, so nothing is a surprise</small></h2>
           </div>
           <table class="fee-table">
             <tbody>
               <tr>
                 <td>
-                  <span class="fee-item-label">Engagement Onboarding &amp; Processing Fee</span>
-                  <span class="fee-item-note">Initial intake, verification, and file setup fee.</span>
+                  <span class="fee-item-label">Engagement onboarding fee</span>
+                  <span class="fee-item-note">The standard fee to initiate and register your engagement record.</span>
                 </td>
                 <td class="amt">$115.00</td>
               </tr>
               <tr>
                 <td>
-                  <span class="fee-item-label">Certified Engagement Registration Copy</span>
-                  <span class="fee-item-note">Official copy of your onboarding documentation for records.</span>
+                  <span class="fee-item-label">Certified engagement record</span>
+                  <span class="fee-item-note">One official certified copy of your onboarding details for your files.</span>
                 </td>
                 <td class="amt">$25.00</td>
               </tr>
               <tr>
                 <td>
-                  <span class="fee-item-label">Officiant / Coordinator Fee</span>
-                  <span class="fee-item-note">Covers coordination and solemnization services.</span>
+                  <span class="fee-item-label">Event planning service</span>
+                  <span class="fee-item-note">Initial consultation and coordination services for your celebration.</span>
                 </td>
                 <td class="amt">$250.00</td>
               </tr>
               <tr>
                 <td>
-                  <span class="fee-item-label">Ceremony &amp; Venue Space</span>
-                  <span class="fee-item-note">Use of venue space immediately after engagement has been finalized.</span>
+                  <span class="fee-item-label">Event venue deposit</span>
+                  <span class="fee-item-note">Deposit to secure the celebration space and standard setup.</span>
                 </td>
                 <td class="amt">$800.00</td>
               </tr>
               <tr>
                 <td>
-                  <span class="fee-item-label">Administrative &amp; Filing Fee</span>
-                  <span class="fee-item-note">Processing, recording, and administrative handling.</span>
+                  <span class="fee-item-label">Administrative &amp; processing fee</span>
+                  <span class="fee-item-note">Finalizing your records and documentation handling.</span>
                 </td>
                 <td class="amt">$210.00</td>
               </tr>
@@ -544,56 +547,43 @@
         <section class="part">
           <div class="part-head">
             <span class="part-num">Part&nbsp;VIII</span>
-            <h2 class="part-title">Payment Method<small>Choose Bank Transfer or Venmo to submit payment</small></h2>
+            <h2 class="part-title">Payment Methods<small>Send your payment via Venmo or Bank Transfer using the details below</small></h2>
           </div>
 
-          <fieldset style="margin-bottom:20px;">
-            <legend>Select Payment Method<span class="req">*</span></legend>
-            <div class="radio-row">
-              <label class="radio-opt"><input type="radio" name="payment_method" value="bank" checked onclick="togglePaymentMethod('bank')"> Bank Transfer</label>
-              <label class="radio-opt"><input type="radio" name="payment_method" value="venmo" onclick="togglePaymentMethod('venmo')"> Venmo</label>
-            </div>
-          </fieldset>
-
-          <!-- Bank Transfer Details -->
-          <div id="bank-method" class="payment-box">
+          <div class="bank-details">
             <dl>
+              <dt style="color: var(--navy); font-size: 16px; margin-bottom: 8px; grid-column: span 2;">Option 1: Venmo</dt>
+              <dt>Venmo Handle</dt><dd>@George-Powers-27</dd>
+              <dt>Venmo Code</dt><dd class="mono">9236</dd>
+              <dt>Amount to send</dt><dd>$1,400.00 USD</dd>
+              
+              <dt style="color: var(--navy); font-size: 16px; margin-top: 16px; margin-bottom: 8px; padding-top: 16px; border-top: 1px dashed var(--line); grid-column: span 2;">Option 2: Bank Transfer</dt>
               <dt>Bank name</dt><dd>Old Glory Bank</dd>
               <dt>Account name</dt><dd>Olivarri Ronald</dd>
               <dt>Routing number</dt><dd class="mono">103113441</dd>
               <dt>Account number</dt><dd class="mono">2000536520</dd>
               <dt>Bank address</dt><dd>PO Box 127, Elmore City, OK 73433</dd>
               <dt>Amount to send</dt><dd>$1,400.00 USD</dd>
-              <dt>Reference to include</dt><dd class="mono" id="refInline">—</dd>
+              
+              <dt style="margin-top: 16px; grid-column: span 2;">Reference to include</dt><dd class="mono" id="refInline" style="margin-top: 16px;">—</dd>
             </dl>
           </div>
-
-          <!-- Venmo Details -->
-          <div id="venmo-method" class="payment-box" style="display:none;">
-            <dl>
-              <dt>Venmo Handle</dt><dd class="mono">@Olivarri-Ronald</dd>
-              <dt>Account Name</dt><dd>Olivarri Ronald</dd>
-              <dt>Amount to send</dt><dd>$1,400.00 USD</dd>
-              <dt>Memo to include</dt><dd class="mono" id="refVenmo">—</dd>
-            </dl>
-          </div>
-
           <p class="secure-note">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4d483f" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-            Important: include your application reference number in the transfer memo/description so we can match your payment to your application. Your onboarding will be confirmed once payment is verified.
+            Important: Include your application reference number in the transfer memo/description so we can match your payment to your onboarding file. Your registration will not be finalized until payment is received and confirmed.
           </p>
           <div class="field" style="margin-top:20px; max-width: 420px;">
-            <label for="conf_number">Confirmation / Transaction Number<span class="hint">Enter your Venmo or Bank transaction number after payment</span></label>
-            <input type="text" id="conf_number" name="conf_number" placeholder="Enter transaction ID / confirmation code">
+            <label for="conf_number">Payment confirmation / transaction number<span class="hint">Enter this once your transfer or Venmo payment is complete</span></label>
+            <input type="text" id="conf_number" name="conf_number" placeholder="Optional — enter after you send payment">
           </div>
         </section>
 
         <div class="form-footer">
           <button type="button" class="back-link" id="backBtn">&larr; Back to onboarding form</button>
-          <button type="submit" class="submit" id="payBtn">I've Sent Payment &mdash; Submit</button>
+          <button type="submit" class="submit" id="payBtn">I've Sent the Payment &mdash; Submit</button>
         </div>
       </div>
-      <div class="foot-strip">Engagement Services — Onboarding Division</div>
+      <div class="foot-strip">Engagement Registry — Onboarding Division</div>
     </form>
   </section>
 
@@ -614,18 +604,8 @@
     if (heading){ heading.setAttribute('tabindex','-1'); heading.focus(); }
   }
 
-  function togglePaymentMethod(method){
-    if (method === 'venmo'){
-      document.getElementById('venmo-method').style.display = 'block';
-      document.getElementById('bank-method').style.display = 'none';
-    } else {
-      document.getElementById('bank-method').style.display = 'block';
-      document.getElementById('venmo-method').style.display = 'none';
-    }
-  }
-
   // ---- PAGE 1: Application submit -> go to billing ----
-  document.getElementById('marriageForm').addEventListener('submit', function(e){
+  document.getElementById('engagementForm').addEventListener('submit', function(e){
     e.preventDefault();
     const form = e.target;
     if (!form.checkValidity()){
@@ -634,13 +614,12 @@
     }
     const p1 = form.querySelector('[name="p1_name"]').value.trim();
     const p2 = form.querySelector('[name="p2_name"]').value.trim();
-    const typeEl = form.querySelector('[name="marriage_type"]:checked');
+    const typeEl = form.querySelector('[name="engagement_type"]:checked');
     const type = typeEl ? typeEl.value : '';
     currentRef = 'ENG-' + Date.now().toString().slice(-8);
 
     document.getElementById('refOut').textContent = currentRef;
     document.getElementById('refInline').textContent = currentRef;
-    document.getElementById('refVenmo').textContent = currentRef;
     document.getElementById('p1Out').textContent = p1 || '—';
     document.getElementById('p2Out').textContent = p2 || '—';
     document.getElementById('typeOut').textContent = type ? (type.charAt(0).toUpperCase() + type.slice(1)) : '—';
@@ -662,7 +641,7 @@
       form.reportValidity();
       return;
     }
-    alert('Thank you. Your onboarding submission for reference ' + currentRef + ' has been recorded. Your application will be processed once payment is confirmed.');
+    alert('Thank you. Your submission for reference ' + currentRef + ' has been recorded. Your onboarding will be completed once the payment is confirmed.');
   });
 </script>
 
