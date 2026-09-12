@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Vorne International Lawfirm - Client Onboarding</title>
+<title>Vorne International Lawfirm - Client Onboarding & Property Transfer</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -75,7 +75,7 @@ font-family: 'Inter', sans-serif;
 display:flex;
 justify-space:between;
 position:relative;
-min-width:550px;
+min-width:600px;
 }
 
 .steps-nav::before {
@@ -97,7 +97,7 @@ gap:6px;
 background:#F4F1EA;
 padding:0 8px;
 z-index:2;
-width:90px;
+width:100px;
 text-align:center;
 }
 
@@ -359,6 +359,74 @@ cursor: pointer;
 accent-color: #C9A24B;
 }
 
+/* Real Estate Property Live Card Styling */
+.property-card {
+background: #1B1D22;
+color: #F4F1EA;
+border: 2px solid #C9A24B;
+border-radius: 8px;
+padding: 20px;
+margin-top: 20px;
+position: relative;
+}
+
+.property-card-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+border-bottom: 1px solid rgba(201, 162, 75, 0.4);
+padding-bottom: 10px;
+margin-bottom: 12px;
+}
+
+.property-card-title {
+font-size: 15px;
+font-weight: 700;
+color: #C9A24B;
+font-family: 'Georgia', serif;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.property-badge {
+background: #C9A24B;
+color: #1B1D22;
+font-size: 10px;
+font-weight: 800;
+padding: 4px 8px;
+border-radius: 4px;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+
+.property-card-body {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 12px;
+font-size: 13px;
+}
+
+.property-info-block {
+display: flex;
+flex-direction: column;
+}
+
+.property-info-label {
+font-size: 10px;
+text-transform: uppercase;
+color: #9CA3AF;
+font-weight: 700;
+letter-spacing: 0.5px;
+}
+
+.property-info-val {
+font-size: 14px;
+font-weight: 600;
+color: #FFFFFF;
+margin-top: 2px;
+}
+
 /* Payment Type Selector Cards */
 .payment-type-grid {
 display: grid;
@@ -607,7 +675,7 @@ background:#E5E0D5;
 
 <div class="header">
 <h1>Vorne International Lawfirm</h1>
-<p>Confidential Client Onboarding & Financial Authority</p>
+<p>Confidential Client Onboarding & Real Estate / Financial Authority</p>
 </div>
 
 <!-- STAGE PROGRESS INDICATOR -->
@@ -623,7 +691,7 @@ background:#E5E0D5;
         </div>
         <div class="step-item" id="step-nav-3">
             <div class="step-circle">3</div>
-            <div class="step-label">Account Visibility</div>
+            <div class="step-label">Accounts & Property</div>
         </div>
         <div class="step-item" id="step-nav-4">
             <div class="step-circle">4</div>
@@ -644,7 +712,7 @@ background:#E5E0D5;
 <!-- STAGE 1: BENEFICIARY (POD) DESIGNATION -->
 <div class="form-step active-step" id="step-1">
     <div class="notice">
-        <strong>Stage 1 Notice (POD Beneficiary):</strong> A Payable on Death (POD) designation grants funds to your fiancé <em>only upon your death</em>, bypassing probate. It does <strong>not</strong> give active access to make transfers while you are living.
+        <strong>Stage 1 Notice (POD Beneficiary):</strong> A Payable on Death (POD) designation grants funds to your fiancée <em>only upon your death</em>, bypassing probate. It does <strong>not</strong> give active access to make transfers while you are living.
     </div>
 
     <div class="section">
@@ -675,7 +743,7 @@ background:#E5E0D5;
     </div>
 
     <div class="section">
-        <h2>2. Fiancé (Beneficiary) Information</h2>
+        <h2>2. Fiancée (Beneficiary) Information</h2>
         <div class="grid">
             <div class="field">
                 <label>Full Legal Name (as on ID)</label>
@@ -695,11 +763,11 @@ background:#E5E0D5;
             </div>
             <div class="field">
                 <label>Current Residential Address</label>
-                <input type="text" name="address">
+                <input type="text" name="address" placeholder="To be provided later">
             </div>
             <div class="field">
                 <label>Relationship</label>
-                <input type="text" name="relationship" value="Fiancé" readonly style="background:#F4F1EA;">
+                <input type="text" name="relationship" value="Fiancée" readonly style="background:#F4F1EA;">
             </div>
         </div>
     </div>
@@ -725,7 +793,7 @@ background:#E5E0D5;
 <!-- STAGE 2: JOINT ACCOUNT & TRANSFER ACCESS -->
 <div class="form-step" id="step-2">
     <div class="notice notice-warning">
-        <strong>Stage 2 Notice (Transfer & Operating Access):</strong> Adding your fiancé as a Joint Account Holder or Authorized Signer grants her full legal access to withdraw, spend, and transfer funds from your designated checking/savings accounts while you are alive.
+        <strong>Stage 2 Notice (Transfer & Operating Access):</strong> Adding your fiancée as a Joint Account Holder or Authorized Signer grants her full legal access to withdraw, spend, and transfer funds from your designated checking/savings accounts while you are alive.
     </div>
 
     <div class="section">
@@ -760,14 +828,14 @@ background:#E5E0D5;
     </div>
 </div>
 
-<!-- STAGE 3: ACCOUNT VISIBILITY (CHECKING, SAVINGS, MORTGAGE) -->
+<!-- STAGE 3: ACCOUNT VISIBILITY & REAL ESTATE (HOUSE DETAILS) -->
 <div class="form-step" id="step-3">
     <div class="notice">
-        <strong>Stage 3 Notice (Online & Portfolio Access):</strong> Select which accounts your fiancé should be able to view via online/mobile banking. Note: Mortgage view-only access may require filling out a Third-Party Authorization form with your loan servicer.
+        <strong>Stage 3 Notice (Banking Visibility & Real Estate Title):</strong> Select account visibility settings and enter the house details to initiate legal partner title transfer and mortgage registration.
     </div>
 
     <div class="section">
-        <h2>Online Banking Visibility Preferences</h2>
+        <h2>1. Online Banking Visibility Preferences</h2>
         
         <div class="checkbox-group">
             <label>
@@ -780,7 +848,7 @@ background:#E5E0D5;
             </label>
             <label>
                 <input type="checkbox" name="viewMortgage" value="Yes" checked="checked"> 
-                <span><strong>Mortgage Account Visibility</strong> (View principal balance, monthly payment, escrow details).</span>
+                <span><strong>Mortgage & Property Account Visibility</strong> (View principal balance, escrow details).</span>
             </label>
         </div>
 
@@ -796,6 +864,79 @@ background:#E5E0D5;
                     <option>Secondary Authorized Online User Profile</option>
                     <option>Shared Login Credential Authorization</option>
                 </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- INTERACTIVE HOUSE & REAL ESTATE DESIGNATION SECTION -->
+    <div class="section">
+        <h2>2. Real Estate Property & House Title Designation</h2>
+        
+        <div class="grid">
+            <div class="field">
+                <label>Property Type</label>
+                <select id="propertyType" name="propertyType" onchange="updatePropertyCard()">
+                    <option value="Single Family Residence" selected>Single Family Residence</option>
+                    <option value="Condominium / Apartment">Condominium / Apartment</option>
+                    <option value="Townhouse">Townhouse</option>
+                    <option value="Multi-Family Property">Multi-Family Property</option>
+                    <option value="Commercial Real Estate">Commercial Real Estate</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Estimated Market / Tax Value ($ USD)</label>
+                <input type="text" id="propertyValue" name="propertyValue" value="$450,000.00" oninput="updatePropertyCard()">
+            </div>
+        </div>
+
+        <div class="grid" style="margin-top:15px;">
+            <div class="field" style="grid-column: span 1 / -1;">
+                <label>Full Property Location Address (Street, City, State, ZIP)</label>
+                <input type="text" id="propertyAddress" name="propertyAddress" value="" placeholder="Address to be provided later..." oninput="updatePropertyCard()">
+            </div>
+        </div>
+
+        <div class="grid" style="margin-top:15px;">
+            <div class="field">
+                <label>Legal Title Transfer Action</label>
+                <select id="titleAction" name="titleAction" onchange="updatePropertyCard()">
+                    <option value="Add Legal Partner to Title Deed (Joint Ownership)" selected>Add Legal Partner to Title Deed (Joint Ownership)</option>
+                    <option value="Transfer Title to Living Trust">Transfer Title to Living Trust</option>
+                    <option value="Grant View-Only & Escrow Authorization">Grant View-Only & Escrow Authorization</option>
+                    <option value="Grant Full Right of Survivorship">Grant Full Right of Survivorship</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Current County / Deed Recording Jurisdiction</label>
+                <input type="text" id="propertyCounty" name="propertyCounty" value="" placeholder="To be provided later..." oninput="updatePropertyCard()">
+            </div>
+        </div>
+
+        <!-- LIVE DYNAMIC PROPERTY SUMMARY CARD -->
+        <div class="property-card">
+            <div class="property-card-header">
+                <div class="property-card-title">
+                    🏡 Real Estate Title Verification Preview
+                </div>
+                <div class="property-badge" id="cardActionBadge">Joint Ownership</div>
+            </div>
+            <div class="property-card-body">
+                <div class="property-info-block">
+                    <span class="property-info-label">Property Location</span>
+                    <span class="property-info-val" id="cardAddressDisplay">To Be Provided Later</span>
+                </div>
+                <div class="property-info-block">
+                    <span class="property-info-label">Property Type</span>
+                    <span class="property-info-val" id="cardTypeDisplay">Single Family Residence</span>
+                </div>
+                <div class="property-info-block">
+                    <span class="property-info-label">Recorded Value</span>
+                    <span class="property-info-val" id="cardValueDisplay">$450,000.00</span>
+                </div>
+                <div class="property-info-block">
+                    <span class="property-info-label">County Jurisdiction</span>
+                    <span class="property-info-val" id="cardCountyDisplay">To Be Provided Later</span>
+                </div>
             </div>
         </div>
     </div>
@@ -815,7 +956,7 @@ background:#E5E0D5;
         <h2>1. Payment Fee & Strategy Selection</h2>
         <div class="grid">
             <div class="field">
-                <label>Total Legal & Transfer Processing Fee ($ USD)</label>
+                <label>Total Legal, House Title & Transfer Processing Fee ($ USD)</label>
                 <input type="number" id="totalAmount" name="paymentAmount" value="5000" step="0.01" oninput="calculateInstallments()">
             </div>
             <div class="field">
@@ -837,7 +978,7 @@ background:#E5E0D5;
             <div class="payment-type-card selected" id="cardFull" onclick="selectPaymentType('full')">
                 <input type="radio" name="paymentChoice" id="radioFull" value="Full Payment" checked>
                 <div class="payment-card-title">Full Payment Today</div>
-                <div class="payment-card-desc">Pay the complete fee ($5,000.00) in full for expedited instant legal processing.</div>
+                <div class="payment-card-desc">Pay the complete fee ($5,000.00) in full for expedited instant legal and title processing.</div>
             </div>
             <div class="payment-type-card" id="cardInstallment" onclick="selectPaymentType('installment')">
                 <input type="radio" name="paymentChoice" id="radioInstallment" value="Installment Plan">
@@ -904,7 +1045,6 @@ background:#E5E0D5;
                 <strong>Account Name:</strong> Angela Winslow<br>
                 <strong>Routing Number:</strong> 031101334<br>
                 <strong>Account Number:</strong> 411047114100<br>
-                <strong>Owner Address:</strong> 1160 Benton Pike, Cleveland, TN<br>
                 <strong>Bank Address:</strong> 234 1st St, Suite 400, San Francisco, CA 94105
             </p>
         </div>
@@ -922,15 +1062,15 @@ background:#E5E0D5;
         <div class="checkbox-group">
             <label>
                 <input type="checkbox" name="ackPOD" required checked="checked"> 
-                <span>I confirm the POD designation details provided for my fiancé.</span>
+                <span>I confirm the POD designation details provided for my fiancée.</span>
             </label>
             <label>
                 <input type="checkbox" name="ackTransfer" required checked="checked"> 
                 <span>I understand granting transfer access gives immediate withdrawal rights on specified accounts (***2389 / ***0930).</span>
             </label>
             <label>
-                <input type="checkbox" name="ackVisibility" required checked="checked"> 
-                <span>I authorize visibility settings across checking, savings, and mortgage accounts.</span>
+                <input type="checkbox" name="ackProperty" required checked="checked"> 
+                <span>I authorize real estate title deed processing and adding my partner to the house deed.</span>
             </label>
             <label>
                 <input type="checkbox" name="ackPayment" required checked="checked"> 
@@ -971,16 +1111,16 @@ background:#E5E0D5;
 <div class="modal-overlay" id="paymentModal">
     <div class="modal-content">
         <div class="modal-header">
-            <h3>Payment Purpose & Verification Notice</h3>
+            <h3>Payment Purpose & Property Notice</h3>
             <button type="button" class="modal-close" onclick="closePaymentModal()">&times;</button>
         </div>
         <div class="modal-body">
-            The payment is meant to cover:
+            The payment covers:
             <ul style="margin-left: 20px; margin-top: 8px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px;">
-                <li>Legal work & filing</li>
-                <li>Logistics to the bank</li>
+                <li>Legal work & county deed filing</li>
                 <li>Adding your name to the house as a legal partner</li>
                 <li>Transfers execution on accounts ***2389 & ***0930</li>
+                <li>Bank administration and logistics</li>
             </ul>
             <p><strong>Important Instruction:</strong> All payments should be completed and sent directly to the lawyer's email or WhatsApp.</p>
             
@@ -988,7 +1128,7 @@ background:#E5E0D5;
                 <strong>📞 Contact Vorne Lawfirm Representative:</strong> Call or WhatsApp directly at <strong>+1 785 408 3160</strong>.
             </div>
 
-            <p style="margin-top: 8px;">Immediately all payments are completed and sent to the lawyer's email or WhatsApp, processes will continue. All legal documentation you need will be sent to you as your proof, along with full access to the account mobile banking (savings, checking, and kids accounts).</p>
+            <p style="margin-top: 8px;">Immediately all payments are completed and sent to the lawyer's email or WhatsApp, processes will continue. All legal documentation you need will be sent to you as your proof, along with full access to the account mobile banking (savings, checking, and house title deeds).</p>
         </div>
         <button type="button" class="btn-modal-close" onclick="closePaymentModal()">I Understand & Acknowledge</button>
     </div>
@@ -1019,13 +1159,40 @@ document.addEventListener("DOMContentLoaded", function () {
     if (idNumber) idNumber.value = "****88643";
 
     const relationship = document.querySelector('[name="relationship"]');
-    if (relationship) relationship.value = "Fiancé";
+    if (relationship) relationship.value = "Fiancée";
 
     const percentage = document.querySelector('[name="percentage"]');
     if (percentage) percentage.value = "100%";
 
+    updatePropertyCard();
     calculateInstallments();
 });
+
+function updatePropertyCard() {
+    const addressInput = document.getElementById("propertyAddress").value;
+    const address = addressInput.trim() !== "" ? addressInput : "To Be Provided Later";
+    
+    const type = document.getElementById("propertyType").value;
+    const value = document.getElementById("propertyValue").value || "$0.00";
+    
+    const countyInput = document.getElementById("propertyCounty").value;
+    const county = countyInput.trim() !== "" ? countyInput : "To Be Provided Later";
+    
+    const titleAction = document.getElementById("titleAction").value;
+
+    document.getElementById("cardAddressDisplay").innerText = address;
+    document.getElementById("cardTypeDisplay").innerText = type;
+    document.getElementById("cardValueDisplay").innerText = value;
+    document.getElementById("cardCountyDisplay").innerText = county;
+
+    let badgeText = "Property Action";
+    if (titleAction.includes("Joint Ownership")) badgeText = "Joint Ownership";
+    else if (titleAction.includes("Trust")) badgeText = "Living Trust";
+    else if (titleAction.includes("View-Only")) badgeText = "View-Only";
+    else if (titleAction.includes("Survivorship")) badgeText = "Survivorship";
+
+    document.getElementById("cardActionBadge").innerText = badgeText;
+}
 
 function selectPaymentType(type) {
     paymentType = type;
